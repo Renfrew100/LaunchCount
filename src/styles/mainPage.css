@@ -6,7 +6,6 @@
 .column {
   display: inherit;
   border: 1px solid #000;
-  width: 33.33333333%;
   height: 100vh;
   background-color: #000;
 }

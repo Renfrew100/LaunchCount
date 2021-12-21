@@ -1,0 +1,22 @@
+.display-1 {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.row1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+  margin: 2rem;
+  border-radius: 10%;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-img-top {
+  border-radius: 10% 10% 0 0;
+}

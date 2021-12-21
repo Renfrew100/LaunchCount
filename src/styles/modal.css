@@ -1,0 +1,27 @@
+.modal__header {
+  font-size: 2rem;
+  justify-content: flex-start !important;
+}
+
+.modal__image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.modal__close {
+  margin: 0 !important;
+  margin-right: 1rem !important;
+}
+
+.modal__close:hover {
+  background-color: #ff0000;
+}
+
+.modal__close:focus {
+  box-shadow: none;
+}
+
+.modal__close:active {
+  background-color: #00ff00;
+}

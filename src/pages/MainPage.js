@@ -13,7 +13,7 @@ const ORIGINZATIONS = [
     imageURL: "http://assets.stickpng.com/images/5842a770a6515b1e0ad75afe.png",
   },
   {
-    name: "BlueOrigin",
+    name: "Blue Origin",
     imageURL:
       "https://www.flexjet.com/wp-content/uploads/2021/09/FX_BlueOriginLogo.png",
   },
@@ -25,12 +25,13 @@ const ORIGINZATIONS = [
 ]
 
 const companyClickHandlder = (company) => {
+  company = company.replace(" ", "");
   navigate(`/CompanyPage/${company}`);
 }
 
 const createColumns = () => {
   return ORIGINZATIONS.map(org => (
-    <div key={uuid()} className="column">
+    <div key={uuid()} className="col-md-4 col-sm-6 column">
       <Button onClick={() => {companyClickHandlder(org.name)}}>
         <Image image={org.imageURL} title={org.name} />
       </Button>
