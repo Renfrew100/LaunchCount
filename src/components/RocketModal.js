@@ -4,7 +4,7 @@ import { Pie } from "react-chartjs-2";
 import 'chart.js/auto';
 
 
-import Button from "../shared/Button"
+import Button from "./Button"
 
 import "../styles/modal.css"
 

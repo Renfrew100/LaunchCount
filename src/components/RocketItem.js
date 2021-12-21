@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import Button from "../shared/Button"
+import Button from "./Button"
 import RocketModal from "../components/RocketModal"
 import data from "./rockets.json"
 

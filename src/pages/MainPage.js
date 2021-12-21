@@ -2,8 +2,8 @@ import React from "react"
 import uuid from "react-uuid"
 import { navigate } from "gatsby"
 
-import Image from "../shared/Image"
-import Button from "../shared/Button"
+import Image from "../components/Image"
+import Button from "../components/Button"
 
 import "../styles/mainPage.css"
 

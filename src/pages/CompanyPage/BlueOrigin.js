@@ -3,7 +3,7 @@ import React from "react"
 import RocketList from "../../components/RocketList"
 
 import "bootstrap/dist/css/bootstrap.css"
-import "./styles/company.css"
+import "../../styles/company.css"
 
 
 const ROCKETS = [

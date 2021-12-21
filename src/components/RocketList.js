@@ -4,7 +4,7 @@ import uuid from "react-uuid"
 
 import RocketItem from "./RocketItem"
 
-import "../pages/CompanyPage/styles/company.css"
+import "../styles/company.css"
 
 const RocketList = ({rockets}) => {
   return (
