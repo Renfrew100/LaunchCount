@@ -37,6 +37,16 @@ const ROCKETS = [
       postponed: 4,
     },
   },
+  {
+    name: "StarShip",
+    imageURL:
+      "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg",
+    launches: {
+      success: 16,
+      failures: 22,
+      postponed: 4,
+    },
+  }
 ]
 
 const SpaceX = () => {

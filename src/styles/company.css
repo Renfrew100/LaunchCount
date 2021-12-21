@@ -4,12 +4,12 @@
 }
 
 .row1 {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .card {
-  margin: 2rem;
   border-radius: 10%;
 }
 
