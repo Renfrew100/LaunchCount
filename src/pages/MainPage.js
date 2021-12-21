@@ -3,6 +3,7 @@ import uuid from "react-uuid"
 import { navigate } from "gatsby"
 
 import Image from "../shared/Image"
+import Button from "../shared/Button"
 
 import "../styles/mainPage.css"
 
@@ -30,9 +31,9 @@ const companyClickHandlder = (company) => {
 const createColumns = () => {
   return ORIGINZATIONS.map(org => (
     <div key={uuid()} className="column">
-      <button onClick={() => {companyClickHandlder(org.name)}}>
+      <Button onClick={() => {companyClickHandlder(org.name)}}>
         <Image image={org.imageURL} title={org.name} />
-      </button>
+      </Button>
     </div>
   ))
 }
