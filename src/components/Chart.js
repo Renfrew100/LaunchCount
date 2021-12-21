@@ -1,11 +1,21 @@
 import React from "react"
-import { Pie } from "react-chartjs-2"
+import Chart from "react-google-charts"
 import "chart.js/auto"
 
 import "../styles/modal.css"
 
-const Chart = ({ rocketData }) => {
-  return <Pie data={rocketData} />
+const PieChart = ({ rocketData }) => {
+  return (
+    <Chart
+      chartType="PieChart"
+      loader={<div>Loading Chart</div>}
+      data={rocketData}
+      options={{
+        title: "Rocket Launches",
+        is3D: true
+      }}
+    />
+  )
 }
 
-export default Chart
+export default PieChart
