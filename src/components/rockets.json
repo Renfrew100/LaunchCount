@@ -1,0 +1,16 @@
+{
+  "labels": [
+    "Success",
+    "Failures",
+    "Postponed"
+  ],
+  "datasets": [{
+    "label": "My First Dataset",
+    "data": [300, 50, 100],
+    "backgroundColor": [
+      "#00ff00",
+      "#ff0000",
+      "#fffd23"
+    ]
+  }]
+}
