@@ -1,10 +1,10 @@
 import React from "react"
-import uuid from "react-uuid"
 
-import Button from "../../shared/Button"
+import RocketList from "../../components/RocketList"
 
 import "bootstrap/dist/css/bootstrap.css"
 import "./styles/company.css"
+
 
 const ROCKETS = [
   {
@@ -50,32 +50,12 @@ const ROCKETS = [
 ]
 
 const BlueOrigin = () => {
-  const buttonClickHandler = () => {}
-
-  const createColumns = () => {
-    return ROCKETS.map(rocket => (
-      <div key={uuid()} className="col-md-4 col-sm-6">
-        <div className="card">
-          <img
-            className="card-img-top"
-            src={rocket.imageURL}
-            alt={rocket.name}
-          />
-          <div className="card-body">
-            <h5 className="card-title display-5">{rocket.name}</h5>
-            <Button className={"btn inverse"} onClick={buttonClickHandler}>
-              Rocket Specs
-            </Button>
-          </div>
-        </div>
-      </div>
-    ))
-  }
-
   return (
     <div>
-      <h1 className="display-1">Blue Origin</h1>
-      <div className="row1">{createColumns()}</div>
+      <div className="row">
+        <h1 className="display-1">Blue Origin</h1>
+      </div>
+      <RocketList rockets={ROCKETS}/>
     </div>
   )
 }
