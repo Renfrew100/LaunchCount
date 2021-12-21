@@ -1,7 +1,6 @@
 import React from "react"
-import uuid from "react-uuid"
 
-import Button from "../../shared/Button"
+import RocketList from "../../components/RocketList"
 
 import "bootstrap/dist/css/bootstrap.css"
 import "./styles/company.css"
@@ -40,28 +39,12 @@ const ROCKETS = [
 ]
 
 const Nasa = () => {
-  const buttonClickHandler = () => {}
-
-  const createColumns = () => {
-    return ROCKETS.map(rocket => (
-      <div key={uuid()} className="card col-md-4 col-sm-6">
-        <img className="card-img-top" src={rocket.imageURL} alt={rocket.name} />
-        <div className="card-body">
-          <h5 className="card-title display-5">{rocket.name}</h5>
-          <Button className={"btn inverse"} onClick={buttonClickHandler}>
-            Rocket Specs
-          </Button>
-        </div>
-      </div>
-    ))
-  }
-
   return (
     <div>
       <div className="row">
-        <h1 className="display-1">Nasa</h1>
+        <h1 className="display-1">NASA</h1>
       </div>
-      <div className="row1">{createColumns()}</div>
+      <RocketList rockets={ROCKETS}/>
     </div>
   )
 }
