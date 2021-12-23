@@ -8,19 +8,25 @@ app.listen(3000, function() {
   })
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.sendFile(__dirname + '/index.html')
 })
 
-const MongoClient = require('mongodb').MongoClient
 
-  MongoClient.connect("mongodb+srv://Renfrew100:bXfrx2sVR8Op4aaH@cluster0.eyjik.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+
+// const MongoClient = require('mongodb').MongoClient
+
+/*   MongoClient.connect("mongodb+srv://Renfrew100:d5oYc5sp0dBwgZZZ@cluster0.eyjik.mongodb.net/LaunchCode?retryWrites=true&w=majority", {
     useUnifiedTopology: true
   }, (err, client) => {
     if (err) return console.error(err)
     console.log('Connected to Database')
   })
+ */
 
-  
+app.post('/quotes', (req, res) => {
+    console.log(req.body)
+})
+
 /* app.post('/quotes', (req, res) => {
     console.log('Hellooooooooooooooooo!')
 })
