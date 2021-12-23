@@ -29,3 +29,9 @@ button:active {
   color: #fff;
   box-shadow: none;
 }
+
+.main-page-btn {
+  margin: 2rem 0;
+  padding: 2rem;
+  border: 2px solid #0400ff ;
+}

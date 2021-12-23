@@ -2,9 +2,9 @@ import React from "react"
 import uuid from "react-uuid"
 import { navigate } from "gatsby"
 
-import Image from "../components/Image"
 import Button from "../components/Button"
 
+import "bootstrap/dist/css/bootstrap.css"
 import "../styles/mainPage.css"
 
 const ORIGINZATIONS = [
@@ -24,23 +24,31 @@ const ORIGINZATIONS = [
   },
 ]
 
-const companyClickHandlder = (company) => {
-  company = company.replace(" ", "");
-  navigate(`/CompanyPage/${company}`);
-}
-
-const createColumns = () => {
-  return ORIGINZATIONS.map(org => (
-    <div key={uuid()} className="col-md-4 col-sm-6 column">
-      <Button onClick={() => {companyClickHandlder(org.name)}}>
-        <Image image={org.imageURL} title={org.name} />
-      </Button>
-    </div>
-  ))
+const companyClickHandler = company => {
+  company = company.replace(" ", "")
+  navigate(`/CompanyPage/${company}`)
 }
 
 const MainPage = () => {
-  return <div className="row">{createColumns()}</div>
+  return (
+    <div className="container">
+      <h1 className="display-2">Rocket Launch Counter</h1>
+      <div className="button-group">
+        {ORIGINZATIONS.map(org => {
+          return (
+            <Button key={uuid()}
+              className="main-page-btn"
+              onClick={() => {
+                companyClickHandler(`${org.name}`)
+              }}
+            >
+              <h4 className="display-5">{org.name}</h4>
+            </Button>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
 
 export default MainPage
