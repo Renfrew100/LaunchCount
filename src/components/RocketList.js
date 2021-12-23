@@ -8,7 +8,7 @@ import "../styles/company.css"
 
 const RocketList = ({rockets}) => {
   return (
-    <div className="row1">
+    <div className="row">
       {rockets.map(rocket => (
         <RocketItem key={uuid()} rocketName={rocket.name} launchData={rocket.launches} />
       ))}

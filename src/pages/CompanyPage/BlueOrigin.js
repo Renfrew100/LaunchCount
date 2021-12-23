@@ -9,8 +9,6 @@ import "../../styles/company.css"
 const ROCKETS = [
   {
     name: "Falcon 9",
-    imageURL:
-      "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg",
     launches: [
       {
         category: "success",
@@ -31,8 +29,6 @@ const ROCKETS = [
   },
   {
     name: "Falcon Heavy",
-    imageURL:
-      "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg",
     launches: [
       {
         category: "success",
@@ -53,8 +49,6 @@ const ROCKETS = [
   },
   {
     name: "StarShip",
-    imageURL:
-      "https://techcrunch.com/wp-content/uploads/2019/09/Starship-Mk1-Day.jpg",
     launches: [
       {
         category: "success",
