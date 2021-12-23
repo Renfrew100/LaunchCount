@@ -20,10 +20,15 @@ const AddRocket = () => {
     ROCKET_STAT_NUMBERS.push(i)
   }
 
+  const submitHandler = e => {
+    e.preventDefault()
+    console.log("Adding rocket");
+  }
+
   return (
     <div className="container">
       <h2 className="display-3">Add Rocket</h2>
-      <Form className="form">
+      <Form className="form" onSubmit={submitHandler}>
         <Form.Group className="mb-3">
           <Form.Label htmlFor="rocketName">
             <h6 className="display-6">Rocket Name</h6>

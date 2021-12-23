@@ -17,7 +17,7 @@ const CompanyPageFactory = props => {
     <div className="container">
       <h1 className="display-1">{props.companyName}</h1>
       <RocketList rockets={props.rocketData} />
-      <Button className="yellow-inverse" onClick={addRocketHandler}>
+      <Button className="green-inverse" onClick={addRocketHandler}>
         <h3 className="display-4">Add Rocket</h3>
       </Button>
     </div>

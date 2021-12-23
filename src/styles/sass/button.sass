@@ -30,6 +30,16 @@
     @include global.inverseBtn($background-color: global.$blue, $color: global.$white)
     box-shadow: none
 
+.green-inverse
+    @include global.inverseBtn($background-color: global.$green, $color: global.$white)
+
+.green-inverse:hover
+    @include global.inverseBtn($background-color: global.$white, $color: global.$green)
+
+.green-inverse:active
+    @include global.inverseBtn($background-color: global.$green, $color: global.$white)
+    box-shadow: none
+
 .rocket-mod-btn
     margin: 0
 
