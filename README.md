@@ -14,7 +14,7 @@ Number of Postphoned Launches
 
 npm packages 
 ------------
-npm install @progress/kendo-react-charts @progress/kendo-theme-material hammerjs
-npm install @progress/kendo-react-intl
-npm install @progress/kendo-drawing
+-npm install @progress/kendo-react-charts @progress/kendo-theme-material hammerjs
+-npm install @progress/kendo-react-intl
+-npm install @progress/kendo-drawing
 
