@@ -1,10 +1,5 @@
 import React from "react"
-
-import RocketList from "../../components/RocketList"
-import Button from "../../components/Button"
-
-import "bootstrap/dist/css/bootstrap.css"
-import "../../styles/company.css"
+import CompanyPageFactory from "../../components/CompanyPageFactory"
 
 const ROCKETS = [
   {
@@ -71,13 +66,7 @@ const ROCKETS = [
 
 const SpaceX = () => {
   return (
-    <div className="container">
-      <h1 className="display-1">SpaceX</h1>
-      <RocketList rockets={ROCKETS} />
-        <Button className="yellow-inverse">
-          <h3 className="display-4">Add Rocket</h3>
-        </Button>
-    </div>
+    <CompanyPageFactory companyName={"SpaceX"} rocketData={ROCKETS}/>
   )
 }
 

@@ -1,10 +1,6 @@
 import React from "react"
 
-import RocketList from "../../components/RocketList"
-
-import "bootstrap/dist/css/bootstrap.css"
-import "../../styles/company.css"
-
+import CompanyPageFactory from "../../components/CompanyPageFactory"
 
 const ROCKETS = [
   {
@@ -71,12 +67,7 @@ const ROCKETS = [
 
 const BlueOrigin = () => {
   return (
-    <div>
-      <div className="row">
-        <h1 className="display-1">Blue Origin</h1>
-      </div>
-      <RocketList rockets={ROCKETS}/>
-    </div>
+    <CompanyPageFactory companyName={"Blue Origin"} rocketData={ROCKETS}/>
   )
 }
 
