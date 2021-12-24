@@ -77,12 +77,11 @@ const EditRocket = props => {
 
   const launches = rocket.launches
 
-  console.log(launches);
   const successLaunchList = launches.find(launch => launch.category === "success")
   const failedLaunchList = launches.find(launch => launch.category === "failures")
   const postponedLaunchList = launches.find(launch => launch.category === "postponed")
 
-  const [rocketName, setRocketNameState] = useState(rocket.name)
+  const [rocketName, setRocketNameState] = useState("")
   const [successLaunches, setSuccessLaunches] = useState(successLaunchList.value)
   const [failedLaunches, setFailedLaunches] = useState(failedLaunchList.value)
   const [postponedLaunches, setPostponedLaunches] = useState(postponedLaunchList.value)
@@ -90,6 +89,10 @@ const EditRocket = props => {
   const submitHandler = e => {
     e.preventDefault()
     console.log("Edit rocket")
+  }
+
+  const changeHandler = e => {
+    setRocketNameState(e.target.value)
   }
 
   // create the list for the rocket stat dropdowns
@@ -109,7 +112,9 @@ const EditRocket = props => {
           <Form.Control
             type="text"
             id="rocketName"
-            value={rocketName || "BAD"}
+            placeholder={rocket.name}
+            onChange={changeHandler}
+            value={rocketName}
           />
         </Form.Group>
 
