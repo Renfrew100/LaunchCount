@@ -65,9 +65,7 @@ const ROCKETS = [
 ]
 
 const SpaceX = () => {
-  return (
-    <CompanyPageFactory companyName={"SpaceX"} rocketData={ROCKETS}/>
-  )
+  return <CompanyPageFactory companyName={"SpaceX"} rocketData={ROCKETS} />
 }
 
 export default SpaceX
