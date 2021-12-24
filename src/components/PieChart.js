@@ -9,7 +9,6 @@ import {
 import "hammerjs"
 import "@progress/kendo-theme-default/dist/all.css"
 
-import "../styles/modal.css"
 
 const labelContent = props => {
   let formatedNumber = Number(props.dataItem.value)
