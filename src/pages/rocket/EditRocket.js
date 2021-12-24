@@ -1,8 +1,9 @@
-import React, {useState} from "react"
-import { Form } from "react-bootstrap"
+import React, { useState } from "react"
 
-import Button from "../../components/Button"
-import CustomDropdown from "../../components/CustomDropdown"
+import ControlGroup from "../../components/Form/ControlGroup"
+import DropdownGroup from "../../components/Form/DropDownGroup"
+import CustomForm from "../../components/Form/CustomForm"
+import FormGroup from "../../components/Form/FormGroup"
 
 // This is temporary until we get actual data in the database
 const ROCKETS = [
@@ -71,20 +72,29 @@ const ROCKETS = [
   },
 ]
 
-
 const EditRocket = props => {
   const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"])
 
   const launches = rocket.launches
 
-  const successLaunchList = launches.find(launch => launch.category === "success")
-  const failedLaunchList = launches.find(launch => launch.category === "failures")
-  const postponedLaunchList = launches.find(launch => launch.category === "postponed")
+  const successLaunchList = launches.find(
+    launch => launch.category === "success"
+  )
+  const failedLaunchList = launches.find(
+    launch => launch.category === "failures"
+  )
+  const postponedLaunchList = launches.find(
+    launch => launch.category === "postponed"
+  )
 
   const [rocketName, setRocketNameState] = useState("")
-  const [successLaunches, setSuccessLaunches] = useState(successLaunchList.value)
+  const [successLaunches, setSuccessLaunches] = useState(
+    successLaunchList.value
+  )
   const [failedLaunches, setFailedLaunches] = useState(failedLaunchList.value)
-  const [postponedLaunches, setPostponedLaunches] = useState(postponedLaunchList.value)
+  const [postponedLaunches, setPostponedLaunches] = useState(
+    postponedLaunchList.value
+  )
 
   const submitHandler = e => {
     e.preventDefault()
@@ -104,62 +114,44 @@ const EditRocket = props => {
   return (
     <div className="container">
       <h2 className="display-3">Edit Rocket</h2>
-      <Form className="form" onSubmit={submitHandler}>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="rocketName">
-            <h6 className="display-6">Rocket Name</h6>
-          </Form.Label>
-          <Form.Control
-            type="text"
-            id="rocketName"
-            placeholder={rocket.name}
-            onChange={changeHandler}
-            value={rocketName}
+      <CustomForm submitHandler={submitHandler}>
+        <ControlGroup
+          labelText="Rocket Name"
+          htmlFor="rocketName"
+          placeholder={rocket.name}
+          changeHandler={changeHandler}
+          value={rocketName}
+        />
+
+        <FormGroup className="rocket-stats">
+          <DropdownGroup
+            labelText="Successful launches"
+            htmlFor="successLaunches"
+            dropdownToggleText={successLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setSuccessLaunches}
+            dropdownVariant="success"
           />
-        </Form.Group>
 
-        <Form.Group className="mb-3 rocket-stats">
-          <Form.Group>
-            <Form.Label htmlFor="successLaunches">
-              <h6 className="display-6">Successful launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={successLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setSuccessLaunches}
-              dropdownVariant="success"
-            />
-          </Form.Group>
+          <DropdownGroup
+            labelText="Failed launches"
+            htmlFor="failedLaunches"
+            dropdownToggleText={failedLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setFailedLaunches}
+            dropdownVariant="danger"
+          />
 
-          <Form.Group>
-            <Form.Label htmlFor="failedLaunches">
-              <h6 className="display-6">Failed launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={failedLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setFailedLaunches}
-              dropdownVariant="danger"
-            />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label htmlFor="postponedLaunches">
-              <h6 className="display-6">Postponsed launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={postponedLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setPostponedLaunches}
-              dropdownVariant="warning"
-            />
-          </Form.Group>
-        </Form.Group>
-
-        <Button type="submit" className="blue-inverse form-submit-btn">
-          Submit
-        </Button>
-      </Form>
+          <DropdownGroup
+            labelText="Postponsed launches"
+            htmlFor="postponedLaunches"
+            dropdownToggleText={postponedLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setPostponedLaunches}
+            dropdownVariant="warning"
+          />
+        </FormGroup>
+      </CustomForm>
     </div>
   )
 }

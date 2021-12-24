@@ -1,10 +1,9 @@
 import React, { useState } from "react"
-import { Form } from "react-bootstrap"
 
-import Button from "../../components/Button"
-import CustomDropdown from "../../components/CustomDropdown"
-
-import "../../styles/form.css"
+import ControlGroup from "../../components/Form/ControlGroup"
+import DropdownGroup from "../../components/Form/DropDownGroup"
+import CustomForm from "../../components/Form/CustomForm"
+import FormGroup from "../../components/Form/FormGroup"
 
 const AddRocket = () => {
   const [companyName, setCompanyName] = useState("SpaceX")
@@ -22,74 +21,54 @@ const AddRocket = () => {
 
   const submitHandler = e => {
     e.preventDefault()
-    console.log("Adding rocket");
+    console.log("Adding rocket")
   }
 
   return (
     <div className="container">
       <h2 className="display-3">Add Rocket</h2>
-      <Form className="form" onSubmit={submitHandler}>
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="rocketName">
-            <h6 className="display-6">Rocket Name</h6>
-          </Form.Label>
-          <Form.Control type="text" id="rocketName" placeholder="Rocket Name" />
-        </Form.Group>
+      <CustomForm submitHandler={submitHandler}>
+        <ControlGroup labelText="Rocket Name" htmlFor="rocketName" placeholder="Rocket Name"/>
 
-        <Form.Group className="mb-3">
-          <Form.Label htmlFor="companyName">
-            <h6 className="display-6">Company</h6>
-          </Form.Label>
-          <CustomDropdown
-            dropdownToggleText={companyName}
-            dropdownChoices={COMPANIES}
-            setState={setCompanyName}
+        <DropdownGroup
+          labelText="Company"
+          htmlFor="companyName"
+          dropdownToggleText={companyName}
+          dropdownChoices={COMPANIES}
+          setDropdownState={setCompanyName}
+        />
+
+        <FormGroup className="rocket-stats">
+
+          <DropdownGroup
+            labelText="Successful launches"
+            htmlFor="successLaunches"
+            dropdownToggleText={successLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setSuccessLaunches}
+            dropdownVariant="success"
           />
-        </Form.Group>
 
-        <Form.Group className="mb-3 rocket-stats">
+          <DropdownGroup
+            labelText="Failed launches"
+            htmlFor="failedLaunches"
+            dropdownToggleText={failedLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setFailedLaunches}
+            dropdownVariant="danger"
+          />
 
-          <Form.Group>
-            <Form.Label htmlFor="successLaunches">
-              <h6 className="display-6">Successful launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={successLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setSuccessLaunches}
-              dropdownVariant="success"
-            />
-          </Form.Group>
+          <DropdownGroup
+            labelText="Postponsed launches"
+            htmlFor="postponedLaunches"
+            dropdownToggleText={postponedLaunches}
+            dropdownChoices={ROCKET_STAT_NUMBERS}
+            setDropdownState={setPostponedLaunches}
+            dropdownVariant="warning"
+          />
 
-          <Form.Group>
-            <Form.Label htmlFor="failedLaunches">
-              <h6 className="display-6">Failed launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={failedLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setFailedLaunches}
-              dropdownVariant="danger"
-            />
-          </Form.Group>
-          
-          <Form.Group>
-            <Form.Label htmlFor="postponedLaunches">
-              <h6 className="display-6">Postponsed launches</h6>
-            </Form.Label>
-            <CustomDropdown
-              dropdownToggleText={postponedLaunches}
-              dropdownChoices={ROCKET_STAT_NUMBERS}
-              setState={setPostponedLaunches}
-              dropdownVariant="warning"
-            />
-          </Form.Group>
-        </Form.Group>
-
-        <Button type="submit" className="blue-inverse form-submit-btn">
-          Submit
-        </Button>
-      </Form>
+        </FormGroup>
+      </CustomForm>
     </div>
   )
 }
