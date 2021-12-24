@@ -11,6 +11,7 @@ const AddRocket = () => {
   const {
     rocketState,
     companyNameHandler,
+    rocketNameHandler,
     successLaunchHandler,
     failedLaunchHandler,
     postponedLaunchHandler,
@@ -42,6 +43,7 @@ const AddRocket = () => {
           labelText="Rocket Name"
           htmlFor="rocketName"
           placeholder="Rocket Name"
+          changeHandler={rocketNameHandler}
         />
 
         <DropdownGroup
