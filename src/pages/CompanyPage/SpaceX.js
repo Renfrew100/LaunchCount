@@ -3,6 +3,7 @@ import CompanyPageFactory from "../../components/CompanyPageFactory"
 
 const ROCKETS = [
   {
+    id: "1",
     name: "Falcon 9",
     launches: [
       {
@@ -23,6 +24,7 @@ const ROCKETS = [
     ],
   },
   {
+    id: "2",
     name: "Falcon Heavy",
     launches: [
       {
@@ -43,6 +45,7 @@ const ROCKETS = [
     ],
   },
   {
+    id: "3",
     name: "StarShip",
     launches: [
       {

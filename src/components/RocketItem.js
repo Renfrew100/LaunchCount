@@ -1,19 +1,13 @@
-import React, { useContext, useState, useEffect, Fragment } from "react"
+import React, { useState, Fragment } from "react"
 import ChartContainer from "./PieChart"
 import { navigate } from "gatsby"
-import RocketContext from "../context/rocket-context"
 import CustomModal from "./CustomModal"
 
 import Button from "./Button"
 
 import "../styles/button.css"
-// import RocketContext from "../context/rocket-context"
 
-const RocketItem = ({ rocketName, launchData }) => {
-  const { rocketNameState, setRocketName } = useContext(RocketContext)
-
-  const [dataReady, setDataReady] = useState(false)
-
+const RocketItem = ({ rocketName, launchData, rocketId }) => {
   const [modalState, setModalState] = useState(false)
 
   const showModal = () => {
@@ -25,22 +19,8 @@ const RocketItem = ({ rocketName, launchData }) => {
   }
 
   const editRocketHandler = () => {
-    // const successLaunchData = launchData.find(rocketData => rocketData.category === "success").value
-    // const failedLaunchData = launchData.find(rocketData => rocketData.category === "failures").value
-    // const postponedLaunchData = launchData.find(rocketData => rocketData.category === "postponed").value
-    setRocketName("jason")
-    // console.log(context.rocketNameState);
-    // context.successLaunchHandler(successLaunchData)
-    // context.failedLaunchHandler(failedLaunchData)
-    // context.postponedLaunchHandler(postponedLaunchData)
-    navigate("/api/EditRocket")
+    navigate(`/rocket/EditRocket/${rocketId}`)
   }
-
-  // useEffect(() => {
-  //   if (dataReady) {
-  //     navigate("/api/EditRocket")
-  //   }
-  // }, [dataReady])
 
   return (
     <Fragment>
@@ -54,15 +34,16 @@ const RocketItem = ({ rocketName, launchData }) => {
           >
             <h4>Edit Rocket Stats</h4>
           </Button>
-          <Button
-            className="red-inverse rocket-mod-btn"
-            onClick={showModal}
-          >
+          <Button className="red-inverse rocket-mod-btn" onClick={showModal}>
             <h4>Delete Rocket</h4>
           </Button>
         </div>
       </div>
-      <CustomModal modalState={modalState} hideHandler={hideModal} rocketName={rocketName}/>
+      <CustomModal
+        modalState={modalState}
+        hideHandler={hideModal}
+        rocketName={rocketName}
+      />
     </Fragment>
   )
 }

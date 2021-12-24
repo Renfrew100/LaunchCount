@@ -32,6 +32,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 }
 
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/rocket\/EditRocket/)) {
+    page.matchPath = "/rocket/EditRocket/*"
+
+    // Update the page.
+    createPage(page)
+  }
+}
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 

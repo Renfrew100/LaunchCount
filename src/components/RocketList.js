@@ -10,7 +10,7 @@ const RocketList = ({rockets}) => {
   return (
     <div className="row">
       {rockets.map(rocket => (
-        <RocketItem key={uuid()} rocketName={rocket.name} launchData={rocket.launches} />
+        <RocketItem key={uuid()} rocketName={rocket.name} launchData={rocket.launches} rocketId={rocket.id} />
       ))}
     </div>
   )

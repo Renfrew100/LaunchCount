@@ -10,7 +10,7 @@ import "../styles/company.css"
 
 const CompanyPageFactory = props => {
   const addRocketHandler = () => {
-    navigate("/api/AddRocket")
+    navigate("/rocket/AddRocket")
   }
 
   return (
