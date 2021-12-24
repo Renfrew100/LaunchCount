@@ -1,15 +1,25 @@
-import React, { useState } from "react"
+import React from "react"
 
 import ControlGroup from "../../components/Form/ControlGroup"
 import DropdownGroup from "../../components/Form/DropDownGroup"
 import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
+import { useRocketReducer } from "../../components/Reducer/RocketReducer"
+
 const AddRocket = () => {
-  const [companyName, setCompanyName] = useState("SpaceX")
-  const [successLaunches, setSuccessLaunches] = useState(0)
-  const [failedLaunches, setFailedLaunches] = useState(0)
-  const [postponedLaunches, setPostponedLaunches] = useState(0)
+  const {
+    rocketState,
+    companyNameHandler,
+    successLaunchHandler,
+    failedLaunchHandler,
+    postponedLaunchHandler,
+  } = useRocketReducer({
+    companyName: "SpaceX",
+    successLaunch: 0,
+    failedLaunch: 0,
+    postponedLaunch: 0,
+  })
 
   const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
 
@@ -28,45 +38,47 @@ const AddRocket = () => {
     <div className="container">
       <h2 className="display-3">Add Rocket</h2>
       <CustomForm submitHandler={submitHandler}>
-        <ControlGroup labelText="Rocket Name" htmlFor="rocketName" placeholder="Rocket Name"/>
+        <ControlGroup
+          labelText="Rocket Name"
+          htmlFor="rocketName"
+          placeholder="Rocket Name"
+        />
 
         <DropdownGroup
           labelText="Company"
           htmlFor="companyName"
-          dropdownToggleText={companyName}
+          dropdownToggleText={rocketState.companyName}
           dropdownChoices={COMPANIES}
-          setDropdownState={setCompanyName}
+          setDropdownState={companyNameHandler}
         />
 
         <FormGroup className="rocket-stats">
-
           <DropdownGroup
             labelText="Successful launches"
             htmlFor="successLaunches"
-            dropdownToggleText={successLaunches}
+            dropdownToggleText={rocketState.successLaunch}
             dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={setSuccessLaunches}
+            setDropdownState={successLaunchHandler}
             dropdownVariant="success"
           />
 
           <DropdownGroup
             labelText="Failed launches"
             htmlFor="failedLaunches"
-            dropdownToggleText={failedLaunches}
+            dropdownToggleText={rocketState.failedLaunch}
             dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={setFailedLaunches}
+            setDropdownState={failedLaunchHandler}
             dropdownVariant="danger"
           />
 
           <DropdownGroup
             labelText="Postponsed launches"
             htmlFor="postponedLaunches"
-            dropdownToggleText={postponedLaunches}
+            dropdownToggleText={rocketState.postponedLaunch}
             dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={setPostponedLaunches}
+            setDropdownState={postponedLaunchHandler}
             dropdownVariant="warning"
           />
-
         </FormGroup>
       </CustomForm>
     </div>
