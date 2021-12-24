@@ -1,7 +1,7 @@
 import React from "react"
 import { Form } from "react-bootstrap"
 
-import CustomDropdown from "../CustomDropdown"
+import CustomDropdown from "./CustomDropdown"
 import FormLabel from "./Label"
 
 import "../../styles/form.css"

@@ -2,7 +2,7 @@ import React from "react"
 import { Dropdown } from "react-bootstrap"
 import uuid from "react-uuid"
 
-import "../styles/form.css"
+import "../../styles/form.css"
 
 const CustomDropdown = ({
   dropdownToggleText,
