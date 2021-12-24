@@ -1,6 +1,6 @@
 import React from "react"
 
-import CompanyPageFactory from "../../components/CompanyPageFactory"
+import CompanyPageFactory from "./CompanyPageFactory"
 
 const ROCKETS = [
   {

@@ -1,11 +1,11 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import RocketList from "./RocketList"
-import Button from "./Button"
+import RocketList from "../../components/RocketList"
+import Button from "../../components/Button"
 
 import "bootstrap/dist/css/bootstrap.css"
-import "../styles/company.css"
+import "../../styles/company.css"
 
 
 const CompanyPageFactory = props => {
