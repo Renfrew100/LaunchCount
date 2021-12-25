@@ -18,11 +18,14 @@ const AddRocket = () => {
     failedLaunchHandler,
     postponedLaunchHandler,
   } = useRocketReducer({
+    rocketName: "",
     companyName: "SpaceX",
     successLaunch: 0,
     failedLaunch: 0,
     postponedLaunch: 0,
   })
+
+  console.log(rocketState)
 
   const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
 
@@ -37,11 +40,11 @@ const AddRocket = () => {
 
       // When post request is sent to the create url, axios will add a new record(newperson) to the database.
       const newrocket = {
-        Rocket_name: this.state.rocketNameHandler,
-        Company_name: this.state.companyNameHandler,
-        Successful: this.state.successLaunch,
-        Failed: this.state.failedLaunch,
-        //Postponed: req.body.postponedLaunch
+        rocketName: this.state.rocketName,
+        companyName: this.state.companyName,
+        successLaunch: this.state.successLaunch,
+        failedLaunch: this.state.failedLaunch,
+        postponedLaunch: this.body.postponedLaunch
       };
    
       axios
@@ -50,11 +53,11 @@ const AddRocket = () => {
    
       // We will empty the state after posting the data to the database
       this.setState({
-        Rocket_name: this.state.rocketNameHandler,
-        Company_name: this.state.companyNameHandler,
-        Successful: this.state.successLaunch,
-        Failed: this.state.failedLaunch,
-       // Postponed: req.body.postponedLaunch
+        rocketName: this.state.rocketName,
+        companyName: this.state.companyName,
+        successLaunch: this.state.successLaunch,
+        failedLaunch: this.state.failedLaunch,
+        postponedLaunch: this.body.postponedLaunch
       });
 
     console.log("Adding rocket")
