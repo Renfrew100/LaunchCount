@@ -40,11 +40,11 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
-      Rocket_name: req.body.Rocket_name,
-      Company_name: req.body.Company_name,
-      Successful: req.body.Successful,
-      Failed: req.body.Failed,
-      Postphoned: req.body.Postphoned
+      rocketNameHandler: req.body.rocketNameHandler,
+      companyNameHandler: req.body.companyNameHandler,
+      successLaunchHandler: req.body.successLaunchHandler,
+      failedLaunchHandler: req.body.failedLaunchHandler,
+      postponedLaunchHandler: req.body.postponedLaunchHandler
     };
     db_connect.collection("records").insertOne(myobj, function (err, res) {
       if (err) throw err;
