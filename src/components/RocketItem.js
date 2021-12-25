@@ -18,7 +18,7 @@ const RocketItem = ({ rocketName, launchData, rocketId }) => {
     setModalState(false)
   }
 
-  const deleteHandler = () => {
+  const deleteHandler = () => { 
     // Put the backend call here
     setModalState(false)
   }
