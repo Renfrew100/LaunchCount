@@ -7,6 +7,8 @@ import FormGroup from "../../components/Form/FormGroup"
 
 import { useRocketReducer } from "../../components/Reducer/RocketReducer"
 
+import axios from 'axios';
+
 const AddRocket = () => {
   const {
     rocketState,
@@ -32,6 +34,29 @@ const AddRocket = () => {
 
   const submitHandler = e => {
     e.preventDefault()
+
+      // When post request is sent to the create url, axios will add a new record(newperson) to the database.
+      const newrocket = {
+        Rocket_name: this.state.rocketNameHandler,
+        Company_name: this.state.companyNameHandler,
+        Successful: this.state.successLaunch,
+        Failed: this.state.failedLaunch,
+        //Postponed: req.body.postponedLaunch
+      };
+   
+      axios
+        .post("http://localhost:5000/record/add", newrocket)
+        .then((res) => console.log(res.data));
+   
+      // We will empty the state after posting the data to the database
+      this.setState({
+        Rocket_name: this.state.rocketNameHandler,
+        Company_name: this.state.companyNameHandler,
+        Successful: this.state.successLaunch,
+        Failed: this.state.failedLaunch,
+       // Postponed: req.body.postponedLaunch
+      });
+
     console.log("Adding rocket")
   }
 
