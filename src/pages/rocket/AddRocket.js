@@ -52,13 +52,13 @@ const AddRocket = () => {
         .then((res) => console.log(res.data));
    
       // We will empty the state after posting the data to the database
-      this.setState({
+/*       this.setState({
         rocketName: this.rocketState.rocketName,
         companyName: this.rocketState.companyName,
         successLaunch: this.rocketState.successLaunch,
         failedLaunch: this.rocketState.failedLaunch,
         postponedLaunch: this.rocketState.postponedLaunch
-      });
+      }); */
 
     console.log("Adding rocket")
   }
