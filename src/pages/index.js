@@ -1,21 +1,23 @@
 import React from "react"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import {Router} from "@reach/router"
 
 import MainPage from "./MainPage"
 import SpaceX from "./CompanyPage/SpaceX"
 import BlueOrigin from "./CompanyPage/BlueOrigin"
 import Nasa from "./CompanyPage/Nasa"
+import AddRocket from "./rocket/AddRocket"
+import EditRocket from "./rocket/EditRocket"
 
 const Index = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/CompanyPage/SpaceX" element={<SpaceX />} />
-        <Route path="/CompanyPage/BlueOrigin" element={<BlueOrigin />} />
-        <Route path="/CompanyPage/Nasa" element={<Nasa />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <MainPage path="/" />
+      <SpaceX path="/CompanyPage/SpaceX"/>
+      <BlueOrigin path="/CompanyPage/BlueOrigin"/>
+      <Nasa path="/CompanyPage/Nasa"/>
+      <AddRocket path="/rocket/AddRocket"/>
+      <EditRocket path="/rocket/EditRocket/:rocketId"/>
+    </Router>
   )
 }
 
