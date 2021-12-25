@@ -18,6 +18,11 @@ const RocketItem = ({ rocketName, launchData, rocketId }) => {
     setModalState(false)
   }
 
+  const deleteHandler = () => {
+    // Put the backend call here
+    setModalState(false)
+  }
+
   const editRocketHandler = () => {
     navigate(`/rocket/EditRocket/${rocketId}`)
   }
@@ -43,6 +48,7 @@ const RocketItem = ({ rocketName, launchData, rocketId }) => {
         modalState={modalState}
         hideHandler={hideModal}
         rocketName={rocketName}
+        buttonHandler={deleteHandler}
       />
     </Fragment>
   )
