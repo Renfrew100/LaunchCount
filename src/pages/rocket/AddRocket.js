@@ -40,11 +40,11 @@ const AddRocket = () => {
 
       // When post request is sent to the create url, axios will add a new record(newperson) to the database.
       const newrocket = {
-        rocketName: this.state.rocketName,
-        companyName: this.state.companyName,
-        successLaunch: this.state.successLaunch,
-        failedLaunch: this.state.failedLaunch,
-        postponedLaunch: this.body.postponedLaunch
+        rocketName: this.rocketState.rocketName,
+        companyName: this.rocketState.companyName,
+        successLaunch: this.rocketState.successLaunch,
+        failedLaunch: this.rocketState.failedLaunch,
+        postponedLaunch: this.rocketState.postponedLaunch
       };
    
       axios
@@ -53,11 +53,11 @@ const AddRocket = () => {
    
       // We will empty the state after posting the data to the database
       this.setState({
-        rocketName: this.state.rocketName,
-        companyName: this.state.companyName,
-        successLaunch: this.state.successLaunch,
-        failedLaunch: this.state.failedLaunch,
-        postponedLaunch: this.body.postponedLaunch
+        rocketName: this.rocketState.rocketName,
+        companyName: this.rocketState.companyName,
+        successLaunch: this.rocketState.successLaunch,
+        failedLaunch: this.rocketState.failedLaunch,
+        postponedLaunch: this.rocketState.postponedLaunch
       });
 
     console.log("Adding rocket")
