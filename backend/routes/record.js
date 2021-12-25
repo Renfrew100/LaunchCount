@@ -46,6 +46,27 @@ recordRoutes.route("/record/add").post(function (req, response) {
       failedLaunch: req.body.failedLaunch,
       postponedLaunch: req.body.postponedLaunch
     };
+/*     if(companyName === "SpaceX"){
+      db_connect.collection("SpaceX").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+      });
+    }
+
+    if(companyName === "Blue Origin"){
+      db_connect.collection("BlueOrigin").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+      });
+    }
+
+    if(companyName === "NASA"){
+      db_connect.collection("NASA").insertOne(myobj, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+      });
+    }  */
+ 
     db_connect.collection("records").insertOne(myobj, function (err, res) {
       if (err) throw err;
       response.json(res);
@@ -77,7 +98,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id:  ( req.params.id )};
   db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
