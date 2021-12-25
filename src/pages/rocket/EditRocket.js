@@ -145,7 +145,7 @@ const EditRocket = props => {
           />
 
           <DropdownGroup
-            labelText="Postponsed launches"
+            labelText="Postponed launches"
             htmlFor="postponedLaunches"
             dropdownToggleText={rocketState.postponedLaunch}
             dropdownChoices={ROCKET_STAT_NUMBERS}
