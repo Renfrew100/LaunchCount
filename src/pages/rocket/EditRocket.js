@@ -79,6 +79,11 @@ const ROCKETS = [
 
 const EditRocket = props => {
   const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"])
+  /* axios
+      .post("http://localhost:5000/record/add", rocket)
+      .then((res) => console.log(res.data)); */
+     
+ // const rockets = await sendRequest("http://localhost:5000/record/add")
 
   const launches = rocket.launches
 
@@ -120,7 +125,7 @@ const EditRocket = props => {
         };
      
         axios
-          .post("http://localhost:5000/record/add", newrocket)
+          .post("http://localhost:5000/rockets/add", newrocket)
           .then((res) => console.log(res.data));
      
         // We will empty the state after posting the data to the database
