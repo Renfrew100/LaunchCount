@@ -1,82 +1,75 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import CompanyPageFactory from "./CompanyPageFactory"
-
-/* id = 0;
-value = 0;
-companyName = "";
-rocketName = ""; */
-
-const ROCKETS = [
-  {
-    id: "1",
-    name: "Falcon 9",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Falcon Heavy",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-  {
-    id: "3",
-    name: "StarShip",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-]
-
-//ROCKETS.push(AddRocket.newrocket())
-
+import { useHttpClient } from "../../hooks/http-hook"
 
 const SpaceX = () => {
-  return <CompanyPageFactory companyName={"SpaceX"} rocketData={ROCKETS} />
+  let [rocketDatabaseData, setRocketDatabaseData] = useState([])
+  const [rocketGraphData, setRocketGraphData] = useState([])
+  const { isLoading, sendRequest } = useHttpClient()
+
+  useEffect(() => {
+    const getRockets = async () => {
+      try {
+        const rockets = await sendRequest("http://localhost:5000/rockets/SpaceX")
+        setRocketDatabaseData(rockets)
+      } catch (err) {}
+    }
+
+    getRockets()
+  }, [sendRequest, setRocketDatabaseData])
+
+  useEffect(() => {
+    // mapping the data from the database into a format that the KendoReact Graph API understands
+    rocketDatabaseData = rocketDatabaseData.map(rocket => {
+      const id = rocket._id
+      const rocketName = rocket.rocketName
+      const successLaunch = rocket.successLaunch
+      const failedLaunch = rocket.failedLaunch
+      const postponedLaunch = rocket.postponedLaunch
+
+      setRocketGraphData(prevState => [
+        ...prevState,
+        {
+          id,
+          name: rocketName,
+          launches: [
+            {
+              category: "success",
+              value: successLaunch,
+              color: "#00ff00",
+            },
+            {
+              category: "failures",
+              value: failedLaunch,
+              color: "#ff0000",
+            },
+            {
+              category: "postponed",
+              value: postponedLaunch,
+              color: "#fefe20",
+            },
+          ],
+        },
+      ])
+    })
+  }, [rocketDatabaseData])
+
+  console.log(rocketGraphData.length);
+  return (
+    <React.Fragment>
+      {isLoading && (
+        <div>
+          <h3>Loading data</h3>
+        </div>
+      )}
+      {!isLoading && (
+        <CompanyPageFactory
+          companyName={"SpaceX"}
+          rocketData={rocketGraphData}
+        />
+      )}
+    </React.Fragment>
+  )
 }
 
 export default SpaceX
