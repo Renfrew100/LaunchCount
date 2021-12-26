@@ -54,7 +54,6 @@ const SpaceX = () => {
     })
   }, [rocketDatabaseData])
 
-  console.log(rocketGraphData.length);
   return (
     <React.Fragment>
       {isLoading && (
