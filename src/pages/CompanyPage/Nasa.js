@@ -10,7 +10,7 @@ const Nasa = () => {
   useEffect(() => {
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("http://localhost:5000/rockets/Nasa")
+        const rockets = await sendRequest("http://localhost:5000/rockets/NASA")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
