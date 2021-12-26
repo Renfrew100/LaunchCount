@@ -78,6 +78,9 @@ const ROCKETS = [
   },
 ]
 
+const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
+
+
 const EditRocket = props => {
  // const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"]);
   /* axios
@@ -122,6 +125,7 @@ const EditRocket = props => {
 
   const {
     rocketState,
+    companyNameHandler,
     rocketNameHandler,
     successLaunchHandler,
     failedLaunchHandler,
@@ -178,6 +182,15 @@ const EditRocket = props => {
           htmlFor="rocketName"
           changeHandler={rocketNameHandler}
           value={rocketState.rocketName}
+        />
+
+
+      <DropdownGroup
+          labelText="Company"
+          htmlFor="companyName"
+          dropdownToggleText={rocketState.companyName}
+          dropdownChoices={COMPANIES}
+          setDropdownState={companyNameHandler}
         />
 
         <FormGroup className="rocket-stats">
