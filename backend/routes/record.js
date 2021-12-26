@@ -57,28 +57,26 @@ recordRoutes.route("/record/add").post(function (req, response) {
     postponedLaunch: req.body.postponedLaunch,
   }
 
-  /* if(companyName === "SpaceX"){
+   if(myobj.companyName === "SpaceX"){
       db_connect.collection("SpaceX").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
       });
-
-     // SpaceX.ROCKETS.push(myobj);
     } 
-/* 
-    if(companyName === "Blue Origin"){
+
+  if(myobj.companyName === "Blue Origin"){
       db_connect.collection("BlueOrigin").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
       });
     }
 
-    if(companyName === "NASA"){
+  if(myobj.companyName === "NASA"){
       db_connect.collection("NASA").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
       });
-    }  */
+  }  
 
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err
