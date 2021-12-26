@@ -1,6 +1,11 @@
 import React from "react"
 import CompanyPageFactory from "./CompanyPageFactory"
 
+/* id = 0;
+value = 0;
+companyName = "";
+rocketName = ""; */
+
 const ROCKETS = [
   {
     id: "1",
@@ -66,6 +71,9 @@ const ROCKETS = [
     ],
   },
 ]
+
+//ROCKETS.push(AddRocket.newrocket())
+
 
 const SpaceX = () => {
   return <CompanyPageFactory companyName={"SpaceX"} rocketData={ROCKETS} />

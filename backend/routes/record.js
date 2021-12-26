@@ -46,13 +46,16 @@ recordRoutes.route("/record/add").post(function (req, response) {
       failedLaunch: req.body.failedLaunch,
       postponedLaunch: req.body.postponedLaunch
     };
-/*     if(companyName === "SpaceX"){
+
+     /* if(companyName === "SpaceX"){
       db_connect.collection("SpaceX").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
       });
-    }
 
+     // SpaceX.ROCKETS.push(myobj);
+    } 
+/* 
     if(companyName === "Blue Origin"){
       db_connect.collection("BlueOrigin").insertOne(myobj, function (err, res) {
         if (err) throw err;

@@ -13,10 +13,6 @@ const RocketItem = ({ rocketName, launchData, rocketId }) => {
 
   const showModal = () => {
     setModalState(true)
-   // record: this.state.records.filter((el) => el._id !== id),
-   /*  axios.delete("http://localhost:5000/" + id).then((response) => {
-    console.log(response.data);
-    }) */
   }
 
   const hideModal = () => {
@@ -25,6 +21,12 @@ const RocketItem = ({ rocketName, launchData, rocketId }) => {
 
   const deleteHandler = () => { 
     // Put the backend call here
+
+     // record: this.state.records.filter((el) => el._id !== id),
+   /*  axios.delete("http://localhost:5000/" + id).then((response) => {
+    console.log(response.data);
+    }) */
+    
     setModalState(false)
   }
 
