@@ -1,3 +1,6 @@
+.card {
+  flex-grow: 1;
+}
 .card-body {
   text-align: center;
 }
