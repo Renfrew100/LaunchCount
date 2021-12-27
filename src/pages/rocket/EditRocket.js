@@ -50,8 +50,6 @@ const EditRocket = props => {
       try {
         const rocketData = await sendRequest(
           `http://localhost:5000/rockets/SpaceX/${props.params["*"]}`
-          `http://localhost:5000/rockets/Blue Origin/${props.params["*"]}`
-          `http://localhost:5000/rockets/NASA/${props.params["*"]}`
         )
         setLoadedRocket(rocketData)
       } catch (err) {}
