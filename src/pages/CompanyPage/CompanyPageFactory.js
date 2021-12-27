@@ -22,10 +22,10 @@ const CompanyPageFactory = props => {
       <h1 className="display-1">{props.companyName}</h1>
       <RocketList rockets={props.rocketData} />
       <Button className="green-inverse" onClick={addRocketHandler}>
-        <h3 className="display-4">Add Rocket</h3>
+        <h9 className="display-4">Add Rocket</h9>
       </Button>
       <Button className="blue-inverse return-home" onClick={homeHandler}>
-        <h3 className="display-4">Return Home</h3>
+        <h9 className="display-4">Return Home</h9>
       </Button>
     </div>
   )
