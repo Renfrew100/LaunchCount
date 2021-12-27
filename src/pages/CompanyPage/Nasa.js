@@ -6,8 +6,8 @@ const Nasa = () => {
   let [rocketDatabaseData, setRocketDatabaseData] = useState([])
   const [rocketGraphData, setRocketGraphData] = useState([])
   const { isLoading, sendRequest } = useHttpClient()
-
   useEffect(() => {
+    
     const getRockets = async () => {
       try {
         const rockets = await sendRequest("http://localhost:5000/rockets/Nasa")
@@ -23,6 +23,7 @@ const Nasa = () => {
     rocketDatabaseData = rocketDatabaseData.map(rocket => {
       const id = rocket._id
       const rocketName = rocket.rocketName
+      const companyName = rocket.companyName
       const successLaunch = rocket.successLaunch
       const failedLaunch = rocket.failedLaunch
       const postponedLaunch = rocket.postponedLaunch
@@ -32,6 +33,7 @@ const Nasa = () => {
         {
           id,
           name: rocketName,
+          companyName,
           launches: [
             {
               category: "success",
