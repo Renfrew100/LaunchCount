@@ -10,7 +10,7 @@ const BlueOrigin = () => {
   useEffect(() => {
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("http://localhost:5000/rockets/BlueOrigin")
+        const rockets = await sendRequest("http://localhost:5000/rockets/Blue Origin")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
