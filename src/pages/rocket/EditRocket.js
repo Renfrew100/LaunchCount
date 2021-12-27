@@ -152,7 +152,7 @@ const EditRocket = props => {
           postponedLaunch: rocketState.postponedLaunch
         };
         axios
-          .post("http://localhost:5000/record/add", newrocket)
+          .post("http://localhost:5000/update/" + props.params.id, newrocket)
           .then((res) => console.log(res.data));
      
         // We will empty the state after posting the data to the database
