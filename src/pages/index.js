@@ -3,7 +3,7 @@ import {Router} from "@reach/router"
 
 import MainPage from "./MainPage"
 import SpaceX from "./CompanyPage/SpaceX"
-import BlueOrigin from "./CompanyPage/BlueOrigin"
+import BlueOrigin from "./CompanyPage/Blue Origin"
 import NASA from "./CompanyPage/NASA"
 import AddRocket from "./rocket/AddRocket"
 import EditRocket from "./rocket/EditRocket"
@@ -13,7 +13,7 @@ const Index = () => {
     <Router>
       <MainPage path="/" />
       <SpaceX path="/CompanyPage/SpaceX"/>
-      <BlueOrigin path="/CompanyPage/BlueOrigin"/>
+      <BlueOrigin path="/CompanyPage/Blue Origin"/>
       <NASA path="/CompanyPage/NASA"/>
       <AddRocket path="/rocket/AddRocket"/>
       <EditRocket path="/rocket/EditRocket/:rocketId"/>

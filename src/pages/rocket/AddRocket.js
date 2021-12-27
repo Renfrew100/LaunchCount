@@ -38,10 +38,9 @@ const AddRocket = () => {
   const submitHandler = e => {
     // When post request is sent to the create url, axios will add a new record(newperson) to the database.
 
-    let companyName = rocketState.companyName.replace(/\s/g, '');
     const newrocket = {
       rocketName: rocketState.rocketName,
-      companyName,
+      companyName: rocketState.companyName,
       successLaunch: rocketState.successLaunch,
       failedLaunch: rocketState.failedLaunch,
       postponedLaunch: rocketState.postponedLaunch,
@@ -49,7 +48,7 @@ const AddRocket = () => {
 
     
     sendRequest("http://localhost:5000/rocket/add", "POST", newrocket)
-    navigate(`/CompanyPage/${companyName}`)
+    navigate(`/CompanyPage/${newrocket.companyName}`)
   }
 
   return (
