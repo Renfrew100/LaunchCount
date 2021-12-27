@@ -55,8 +55,6 @@ const EditRocket = props => {
   }, [loadedRocket])
 
   const submitHandler = e => {
-    console.log(rocketState)
-
     const editedRocket = {
       rocketID: loadedRocket._id,
       rocketName: rocketState.rocketName,
