@@ -6,7 +6,7 @@ import { navigate } from "gatsby"
 import axios from "axios"
 import CustomModal from "./CustomModal"
 
-import { useRocketReducer } from "../../components/Reducer/RocketReducer"
+import { useRocketReducer } from "./Reducer/RocketReducer"
 
 //import { useHttpClient } from "../../hooks/http-hook"
 
