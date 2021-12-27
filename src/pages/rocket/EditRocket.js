@@ -7,9 +7,9 @@ import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
 import { useRocketReducer } from "../../components/Reducer/RocketReducer"
+import { useHttpClient } from "../../hooks/http-hook"
 
-import axios from 'axios';
-
+import axios from "axios"
 
 // This is temporary until we get actual data in the database
 const ROCKETS = [
@@ -80,50 +80,24 @@ const ROCKETS = [
 
 const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
 
-
 const EditRocket = props => {
- // const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"]);
-  /* axios
-      .post("http://localhost:5000/record/add", rocket)
-      .then((res) => console.log(res.data)); */
-     
- // const rockets = await sendRequest("http://localhost:5000/record/add")
+  const { isLoading, sendRequest } = useHttpClient()
+  let [loadedRocket, setLoadedRocket] = useState({})
 
-   // This will get the record based on the id from the database.
+  useEffect(() => {
+    const getRocket = async () => {
+      try {
+        const rocketData = await sendRequest(
+          `http://localhost:5000/rockets/SpaceX/${props.params["*"]}`
+        )
+        setLoadedRocket(rocketData)
+      } catch (err) {}
+    }
 
-   let [loadedRocket, setLoadedRocket] = useState([])
+    getRocket()
+  }, [sendRequest, setLoadedRocket])
 
-    useEffect(() => {
-      axios
-      .get("http://localhost:5000/rockets/SpaceX/" + props.params.id)
-      .then((response) => {
-        setLoadedRocket({
-          rocketName: response.data.rocketName,
-          companyName: response.data.companyName,
-          successLaunch: response.data.successLaunch,
-          failedLaunch: response.data.failedLaunch,
-          postponedLaunch: response.data.postponedLaunch
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }, [loadedRocket])
- 
- // const launches = rocket.launches
-
-/*    const successLaunchList = launches.find(
-    launch => launch.category === "success"
-  )
-  const failedLaunchList = launches.find(
-    launch => launch.category === "failures"
-  )
-  const postponedLaunchList = launches.find(
-    launch => launch.category === "postponed"
-  ) */
- 
-
-  const {
+  let {
     rocketState,
     companyNameHandler,
     rocketNameHandler,
@@ -131,40 +105,39 @@ const EditRocket = props => {
     failedLaunchHandler,
     postponedLaunchHandler,
   } = useRocketReducer({
-    rocketName: loadedRocket.name,
-    successLaunch: loadedRocket.value,
-    failedLaunch: loadedRocket.value,
-    postponedLaunch: loadedRocket.value,
+    rocketName: "",
+    companyName: "",
+    successLaunch: 0,
+    failedLaunch: 0,
+    postponedLaunch: 0,
   })
 
-  
+  useEffect(() => {
+    // pre-populate with existing rocket data
+    companyNameHandler(loadedRocket.companyName)
+    rocketNameHandler(loadedRocket.rocketName)
+    successLaunchHandler(loadedRocket.successLaunch)
+    failedLaunchHandler(loadedRocket.failedLaunch)
+    postponedLaunchHandler(loadedRocket.postponedLaunch)
+  }, [loadedRocket])
 
   const submitHandler = e => {
     e.preventDefault()
-    console.log("Edit rocket")
+    console.log(rocketState);
 
-        // When post request is sent to the create url, axios will add a new record(newperson) to the database.
-        const newrocket = {
-          rocketName: rocketState.rocketName,
-          companyName: rocketState.companyName,
-          successLaunch: rocketState.successLaunch,
-          failedLaunch: rocketState.failedLaunch,
-          postponedLaunch: rocketState.postponedLaunch
-        };
-        axios
-          .post("http://localhost:5000/update/" + props.params.id, newrocket)
-          .then((res) => console.log(res.data));
-     
-        // We will empty the state after posting the data to the database
-  /*       this.setState({
-          rocketName: this.rocketState.rocketName,
-          companyName: this.rocketState.companyName,
-          successLaunch: this.rocketState.successLaunch,
-          failedLaunch: this.rocketState.failedLaunch,
-          postponedLaunch: this.rocketState.postponedLaunch
-        }); */
-  
-      console.log("Adding rocket")
+    const newrocket = {
+      rocketID: loadedRocket._id,
+      rocketName: rocketState.rocketName,
+      companyName: rocketState.companyName,
+      successLaunch: rocketState.successLaunch,
+      failedLaunch: rocketState.failedLaunch,
+      postponedLaunch: rocketState.postponedLaunch,
+    }
+    axios
+      .post("http://localhost:5000/update/" + loadedRocket._id, newrocket)
+      .then(res => console.log(res.data))
+
+    console.log("Edited rocket")
   }
 
   // create the list for the rocket stat dropdowns
@@ -174,55 +147,64 @@ const EditRocket = props => {
   }
 
   return (
-    <div className="container">
-      <h2 className="display-3">Edit Rocket</h2>
-      <CustomForm submitHandler={submitHandler}>
-        <ControlGroup
-          labelText="Rocket Name"
-          htmlFor="rocketName"
-          changeHandler={rocketNameHandler}
-          value={rocketState.rocketName}
-        />
+    <React.Fragment>
+      {isLoading && (
+        <div>
+          <h3>Loading data</h3>
+        </div>
+      )}
 
+      {!isLoading && rocketState && (
+        <div className="container">
+          <h2 className="display-3">Edit Rocket</h2>
+          <CustomForm submitHandler={submitHandler}>
+            <ControlGroup
+              labelText="Rocket Name"
+              htmlFor="rocketName"
+              changeHandler={rocketNameHandler}
+              value={rocketState.rocketName}
+            />
 
-      <DropdownGroup
-          labelText="Company"
-          htmlFor="companyName"
-          dropdownToggleText={rocketState.companyName}
-          dropdownChoices={COMPANIES}
-          setDropdownState={companyNameHandler}
-        />
+            <DropdownGroup
+              labelText="Company"
+              htmlFor="companyName"
+              dropdownToggleText={rocketState.companyName}
+              dropdownChoices={COMPANIES}
+              setDropdownState={companyNameHandler}
+            />
 
-        <FormGroup className="rocket-stats">
-          <DropdownGroup
-            labelText="Successful launches"
-            htmlFor="successLaunches"
-            dropdownToggleText={rocketState.successLaunch}
-            dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={successLaunchHandler}
-            dropdownVariant="success"
-          />
+            <FormGroup className="rocket-stats">
+              <DropdownGroup
+                labelText="Successful launches"
+                htmlFor="successLaunches"
+                dropdownToggleText={rocketState.successLaunch}
+                dropdownChoices={ROCKET_STAT_NUMBERS}
+                setDropdownState={successLaunchHandler}
+                dropdownVariant="success"
+              />
 
-          <DropdownGroup
-            labelText="Failed launches"
-            htmlFor="failedLaunches"
-            dropdownToggleText={rocketState.failedLaunch}
-            dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={failedLaunchHandler}
-            dropdownVariant="danger"
-          />
+              <DropdownGroup
+                labelText="Failed launches"
+                htmlFor="failedLaunches"
+                dropdownToggleText={rocketState.failedLaunch}
+                dropdownChoices={ROCKET_STAT_NUMBERS}
+                setDropdownState={failedLaunchHandler}
+                dropdownVariant="danger"
+              />
 
-          <DropdownGroup
-            labelText="Postponed launches"
-            htmlFor="postponedLaunches"
-            dropdownToggleText={rocketState.postponedLaunch}
-            dropdownChoices={ROCKET_STAT_NUMBERS}
-            setDropdownState={postponedLaunchHandler}
-            dropdownVariant="warning"
-          />
-        </FormGroup>
-      </CustomForm>
-    </div>
+              <DropdownGroup
+                labelText="Postponed launches"
+                htmlFor="postponedLaunches"
+                dropdownToggleText={rocketState.postponedLaunch}
+                dropdownChoices={ROCKET_STAT_NUMBERS}
+                setDropdownState={postponedLaunchHandler}
+                dropdownVariant="warning"
+              />
+            </FormGroup>
+          </CustomForm>
+        </div>
+      )}
+    </React.Fragment>
   )
 }
 
