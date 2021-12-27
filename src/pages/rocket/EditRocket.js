@@ -145,6 +145,7 @@ const EditRocket = props => {
 
         // When post request is sent to the create url, axios will add a new record(newperson) to the database.
         const newrocket = {
+          rocketID: loadedRocket._id,
           rocketName: rocketState.rocketName,
           companyName: rocketState.companyName,
           successLaunch: rocketState.successLaunch,
@@ -152,7 +153,7 @@ const EditRocket = props => {
           postponedLaunch: rocketState.postponedLaunch
         };
         axios
-          .post("http://localhost:5000/update/" + props.params.id, newrocket)
+          .post("http://localhost:5000/update/" + loadedRocket._id, newrocket)
           .then((res) => console.log(res.data));
      
         // We will empty the state after posting the data to the database
