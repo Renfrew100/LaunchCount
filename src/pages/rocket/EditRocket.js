@@ -22,9 +22,9 @@ const EditRocket = props => {
   let two =
     "http://localhost:5000/rockets/Blue Origin/${props.params["*"]}";
   let three =
-    "http://localhost:5000/rockets/NASA/${props.params["*"]}";
+    "http://localhost:5000/rockets/Nasa/${props.params["*"]}";
   
-   /*  const requestOne = axios.get(one);
+    const requestOne = axios.get(one);
     const requestTwo = axios.get(two);
     const requestThree = axios.get(three);
     
@@ -43,13 +43,16 @@ const EditRocket = props => {
       .catch(errors => {
         // react on errors.
         console.error(errors);
-      }); */
+      });
 
   useEffect(() => {
     const getRocket = async () => {
       try {
         const rocketData = await sendRequest(
           `http://localhost:5000/rockets/SpaceX/${props.params["*"]}`
+          //`http://localhost:5000/rockets/Blue Origin/${props.params["*"]}`
+          //`http://localhost:5000/rockets/NASA/${props.params["*"]}`
+
         )
         setLoadedRocket(rocketData)
       } catch (err) {}
@@ -80,7 +83,7 @@ const EditRocket = props => {
     successLaunchHandler(loadedRocket.successLaunch)
     failedLaunchHandler(loadedRocket.failedLaunch)
     postponedLaunchHandler(loadedRocket.postponedLaunch)
-  }, [loadedRocket])
+  }, [loadedRocket]) 
 
   const submitHandler = e => {
     const editedRocket = {
