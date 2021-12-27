@@ -17,18 +17,48 @@ const EditRocket = props => {
   const { isLoading, sendRequest } = useHttpClient()
   let [loadedRocket, setLoadedRocket] = useState({})
 
+  let one =
+    "http://localhost:5000/rockets/SpaceX/${props.params["*"]}";
+  let two =
+    "http://localhost:5000/rockets/Blue Origin/${props.params["*"]}";
+  let three =
+    "http://localhost:5000/rockets/NASA/${props.params["*"]}";
+  
+   /*  const requestOne = axios.get(one);
+    const requestTwo = axios.get(two);
+    const requestThree = axios.get(three);
+    
+    axios
+      .all([requestOne, requestTwo, requestThree])
+      .then(
+        axios.spread((...responses) => {
+          const responseOne = responses[0];
+          const responseTwo = responses[1];
+          const responesThree = responses[2];
+    
+          // use/access the results
+          console.log(responseOne, responseTwo, responesThree);
+        })
+      )
+      .catch(errors => {
+        // react on errors.
+        console.error(errors);
+      }); */
+
   useEffect(() => {
     const getRocket = async () => {
       try {
         const rocketData = await sendRequest(
           `http://localhost:5000/rockets/SpaceX/${props.params["*"]}`
+          `http://localhost:5000/rockets/Blue Origin/${props.params["*"]}`
+          `http://localhost:5000/rockets/NASA/${props.params["*"]}`
         )
         setLoadedRocket(rocketData)
       } catch (err) {}
     }
 
     getRocket()
-  }, [sendRequest, setLoadedRocket])
+  }, [sendRequest, setLoadedRocket]) 
 
   let {
     rocketState,
