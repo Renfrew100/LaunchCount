@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useEffect } from "react"
 
 import ControlGroup from "../../components/Form/ControlGroup"
 import DropdownGroup from "../../components/Form/DropDownGroup"
@@ -77,12 +78,41 @@ const ROCKETS = [
   },
 ]
 
+const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
+
+
 const EditRocket = props => {
-  const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"])
+ // const rocket = ROCKETS.find(rocket => rocket.id === props.params["*"]);
+  /* axios
+      .post("http://localhost:5000/record/add", rocket)
+      .then((res) => console.log(res.data)); */
+     
+ // const rockets = await sendRequest("http://localhost:5000/record/add")
 
-  const launches = rocket.launches
+   // This will get the record based on the id from the database.
 
-  const successLaunchList = launches.find(
+   let [loadedRocket, setLoadedRocket] = useState([])
+
+    useEffect(() => {
+      axios
+      .get("http://localhost:5000/rockets/SpaceX/" + props.params.id)
+      .then((response) => {
+        setLoadedRocket({
+          rocketName: response.data.rocketName,
+          companyName: response.data.companyName,
+          successLaunch: response.data.successLaunch,
+          failedLaunch: response.data.failedLaunch,
+          postponedLaunch: response.data.postponedLaunch
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }, [loadedRocket])
+ 
+ // const launches = rocket.launches
+
+/*    const successLaunchList = launches.find(
     launch => launch.category === "success"
   )
   const failedLaunchList = launches.find(
@@ -90,21 +120,24 @@ const EditRocket = props => {
   )
   const postponedLaunchList = launches.find(
     launch => launch.category === "postponed"
-  )
-
+  ) */
+ 
 
   const {
     rocketState,
+    companyNameHandler,
     rocketNameHandler,
     successLaunchHandler,
     failedLaunchHandler,
     postponedLaunchHandler,
   } = useRocketReducer({
-    rocketName: rocket.name,
-    successLaunch: successLaunchList.value,
-    failedLaunch: failedLaunchList.value,
-    postponedLaunch: postponedLaunchList.value,
+    rocketName: loadedRocket.name,
+    successLaunch: loadedRocket.value,
+    failedLaunch: loadedRocket.value,
+    postponedLaunch: loadedRocket.value,
   })
+
+  
 
   const submitHandler = e => {
     e.preventDefault()
@@ -118,9 +151,8 @@ const EditRocket = props => {
           failedLaunch: rocketState.failedLaunch,
           postponedLaunch: rocketState.postponedLaunch
         };
-     
         axios
-          .post("http://localhost:5000/record/add", newrocket)
+          .post("http://localhost:5000/update/" + props.params.id, newrocket)
           .then((res) => console.log(res.data));
      
         // We will empty the state after posting the data to the database
@@ -150,6 +182,15 @@ const EditRocket = props => {
           htmlFor="rocketName"
           changeHandler={rocketNameHandler}
           value={rocketState.rocketName}
+        />
+
+
+      <DropdownGroup
+          labelText="Company"
+          htmlFor="companyName"
+          dropdownToggleText={rocketState.companyName}
+          dropdownChoices={COMPANIES}
+          setDropdownState={companyNameHandler}
         />
 
         <FormGroup className="rocket-stats">
