@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import CompanyPageFactory from "./CompanyPageFactory"
 import { useHttpClient } from "../../hooks/http-hook"
 
-const NASA = () => {
+const Nasa = () => {
   let [rocketDatabaseData, setRocketDatabaseData] = useState([])
   const [rocketGraphData, setRocketGraphData] = useState([])
   const { isLoading, sendRequest } = useHttpClient()
@@ -10,7 +10,7 @@ const NASA = () => {
   useEffect(() => {
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("http://localhost:5000/rockets/NASA")
+        const rockets = await sendRequest("http://localhost:5000/rockets/Nasa")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
@@ -62,10 +62,10 @@ const NASA = () => {
         </div>
       )}
       {!isLoading && (
-        <CompanyPageFactory companyName={"NASA"} rocketData={rocketGraphData} />
+        <CompanyPageFactory companyName={"Nasa"} rocketData={rocketGraphData} />
       )}
     </React.Fragment>
   )
 }
 
-export default NASA
+export default Nasa

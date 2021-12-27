@@ -7,7 +7,7 @@ import Button from "../components/Button"
 import "bootstrap/dist/css/bootstrap.css"
 import "../styles/mainPage.css"
 
-const ORIGINZATIONS = ["SpaceX", "Blue Origin", "NASA"]
+const ORIGINZATIONS = ["SpaceX", "Blue Origin", "Nasa"]
 
 const companyClickHandler = company => {
   navigate(`/CompanyPage/${company}`)
