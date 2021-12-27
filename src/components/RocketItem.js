@@ -1,12 +1,13 @@
 import React, { useState, Fragment } from "react"
-import { useEffect } from "react"
+import {globalHistory} from "@reach/router"
+// import { useEffect } from "react"
 
 import ChartContainer from "./PieChart"
 import { navigate } from "gatsby"
 import axios from "axios"
 import CustomModal from "./CustomModal"
 
-import { useRocketReducer } from "../../components/Reducer/RocketReducer"
+// import { useRocketReducer } from "./Reducer/RocketReducer"
 
 //import { useHttpClient } from "../../hooks/http-hook"
 
@@ -14,11 +15,11 @@ import Button from "./Button"
 
 import "../styles/button.css"
 
-const RocketItem = ({ rocketName, launchData, rocketId }) => {
+const RocketItem = ({ rocketName, launchData, rocketId, companyName }) => {
 const [modalState, setModalState] = useState(false)
 
  // const { isLoading, sendRequest } = useHttpClient()
- let [loadedRocket, setLoadedRocket] = useState({})
+//  let [loadedRocket, setLoadedRocket] = useState({})
 
   const showModal = () => {
     setModalState(true)
@@ -28,15 +29,15 @@ const [modalState, setModalState] = useState(false)
     setModalState(false)
   }
 
-  let {
-    rocketState,
-  } = useRocketReducer({
-    rocketName: "",
-    companyName: "",
-    successLaunch: 0,
-    failedLaunch: 0,
-    postponedLaunch: 0,
-  })
+  // let {
+  //   rocketState,
+  // } = useRocketReducer({
+  //   rocketName: "",
+  //   companyName: "",
+  //   successLaunch: 0,
+  //   failedLaunch: 0,
+  //   postponedLaunch: 0,
+  // })
 
   const deleteHandler = () => {
     // Put the backend call here
@@ -45,20 +46,19 @@ const [modalState, setModalState] = useState(false)
     /*  axios.delete("http://localhost:5000/" + id).then((response) => {
     console.log(response.data);
     }) */
-      const deletedRocket = {
-        rocketID: loadedRocket._id,
-        rocketName: rocketState.rocketName,
-        companyName: rocketState.companyName,
-        successLaunch: rocketState.successLaunch,
-        failedLaunch: rocketState.failedLaunch,
-        postponedLaunch: rocketState.postponedLaunch,
-      }
+      // const deletedRocket = {
+      //   rocketID: loadedRocket._id,
+      //   rocketName: rocketState.rocketName,
+      //   companyName: rocketState.companyName,
+      //   successLaunch: rocketState.successLaunch,
+      //   failedLaunch: rocketState.failedLaunch,
+      //   postponedLaunch: rocketState.postponedLaunch,
+      // }
       axios
-        .post("http://localhost:5000/" + loadedRocket._id, deletedRocket)
+        .delete(`http://localhost:5000/${companyName}/${rocketId}`)
         .then(res => console.log(res.data))
-  
-      console.log("Deleted rocket")
-      navigate(`/CompanyPage/${deletedRocket.companyName}`)
+        
+      navigate(`/CompanyPage/${companyName}`)
     }  
 
   const editRocketHandler = () => {

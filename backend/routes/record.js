@@ -100,13 +100,17 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 })
 
 // This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
+recordRoutes.route("/:companyName/:id").delete((req, response) => {
+  let companyName = req.params.companyName;
+  let id = req.params.id;
+
+
   let db_connect = dbo.getDb()
-  let myquery = { _id: req.params.id }
-  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
-    if (err) throw err
+  let deleteQuery = { _id: ObjectId(req.params.id) }
+  db_connect.collection(companyName).deleteOne(deleteQuery, function (err, obj) {
+    if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
     console.log("1 document deleted")
-    response.status(obj)
+    response.status(200).json({message: "Deleted document with id " + id})
   })
 })
 
