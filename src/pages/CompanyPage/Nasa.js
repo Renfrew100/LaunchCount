@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import CompanyPageFactory from "./CompanyPageFactory"
 import { useHttpClient } from "../../hooks/http-hook"
 
-const Nasa = () => {
+const NASA = () => {
   let [rocketDatabaseData, setRocketDatabaseData] = useState([])
   const [rocketGraphData, setRocketGraphData] = useState([])
   const { isLoading, sendRequest } = useHttpClient()
@@ -62,10 +62,10 @@ const Nasa = () => {
         </div>
       )}
       {!isLoading && (
-        <CompanyPageFactory companyName={"Nasa"} rocketData={rocketGraphData} />
+        <CompanyPageFactory companyName={"NASA"} rocketData={rocketGraphData} />
       )}
     </React.Fragment>
   )
 }
 
-export default Nasa
+export default NASA

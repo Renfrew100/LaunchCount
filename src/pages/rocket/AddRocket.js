@@ -1,4 +1,5 @@
 import React from "react"
+import {navigate} from "@reach/router"
 
 import ControlGroup from "../../components/Form/ControlGroup"
 import DropdownGroup from "../../components/Form/DropDownGroup"
@@ -6,8 +7,7 @@ import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
 import { useRocketReducer } from "../../components/Reducer/RocketReducer"
-
-import axios from 'axios';
+import { useHttpClient } from "../../hooks/http-hook"
 
 const AddRocket = () => {
   const {
@@ -25,7 +25,7 @@ const AddRocket = () => {
     postponedLaunch: 0,
   })
 
-  console.log(rocketState)
+  const { isLoading, sendRequest } = useHttpClient()
 
   const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
 
@@ -36,31 +36,20 @@ const AddRocket = () => {
   }
 
   const submitHandler = e => {
-    e.preventDefault()
+    // When post request is sent to the create url, axios will add a new record(newperson) to the database.
 
-      // When post request is sent to the create url, axios will add a new record(newperson) to the database.
-      const newrocket = {
-        rocketName: rocketState.rocketName,
-        companyName: rocketState.companyName,
-        successLaunch: rocketState.successLaunch,
-        failedLaunch: rocketState.failedLaunch,
-        postponedLaunch: rocketState.postponedLaunch
-      };
-   
-      axios
-        .post("http://localhost:5000/record/add", newrocket)
-        .then((res) => console.log(res.data));
-   
-      // We will empty the state after posting the data to the database
-/*       this.setState({
-        rocketName: this.rocketState.rocketName,
-        companyName: this.rocketState.companyName,
-        successLaunch: this.rocketState.successLaunch,
-        failedLaunch: this.rocketState.failedLaunch,
-        postponedLaunch: this.rocketState.postponedLaunch
-      }); */
+    let companyName = rocketState.companyName.replace(/\s/g, '');
+    const newrocket = {
+      rocketName: rocketState.rocketName,
+      companyName,
+      successLaunch: rocketState.successLaunch,
+      failedLaunch: rocketState.failedLaunch,
+      postponedLaunch: rocketState.postponedLaunch,
+    }
 
-    console.log("Adding rocket")
+    
+    sendRequest("http://localhost:5000/rocket/add", "POST", newrocket)
+    navigate(`/CompanyPage/${companyName}`)
   }
 
   return (
