@@ -11,74 +11,7 @@ import { useHttpClient } from "../../hooks/http-hook"
 
 import axios from "axios"
 
-// This is temporary until we get actual data in the database
-const ROCKETS = [
-  {
-    id: "1",
-    name: "Falcon 9",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Falcon Heavy",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-  {
-    id: "3",
-    name: "StarShip",
-    launches: [
-      {
-        category: "success",
-        value: 5,
-        color: "#00ff00",
-      },
-      {
-        category: "failures",
-        value: 12,
-        color: "#ff0000",
-      },
-      {
-        category: "postponed",
-        value: 6,
-        color: "#fefe20",
-      },
-    ],
-  },
-]
-
-const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
+const COMPANIES = ["SpaceX", "Blue Origin", "Naasa"]
 
 const EditRocket = props => {
   const { isLoading, sendRequest } = useHttpClient()
