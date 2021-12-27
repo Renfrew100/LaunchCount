@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { useEffect } from "react"
+import React, { useState, useEffect } from "react"
+import { navigate } from "@reach/router"
 
 import ControlGroup from "../../components/Form/ControlGroup"
 import DropdownGroup from "../../components/Form/DropDownGroup"
@@ -11,7 +11,7 @@ import { useHttpClient } from "../../hooks/http-hook"
 
 import axios from "axios"
 
-const COMPANIES = ["SpaceX", "Blue Origin", "Naasa"]
+const COMPANIES = ["SpaceX", "Blue Origin", "Nasa"]
 
 const EditRocket = props => {
   const { isLoading, sendRequest } = useHttpClient()
@@ -55,10 +55,9 @@ const EditRocket = props => {
   }, [loadedRocket])
 
   const submitHandler = e => {
-    e.preventDefault()
-    console.log(rocketState);
+    console.log(rocketState)
 
-    const newrocket = {
+    const editedRocket = {
       rocketID: loadedRocket._id,
       rocketName: rocketState.rocketName,
       companyName: rocketState.companyName,
@@ -67,10 +66,11 @@ const EditRocket = props => {
       postponedLaunch: rocketState.postponedLaunch,
     }
     axios
-      .post("http://localhost:5000/update/" + loadedRocket._id, newrocket)
+      .post("http://localhost:5000/update/" + loadedRocket._id, editedRocket)
       .then(res => console.log(res.data))
 
     console.log("Edited rocket")
+    navigate(`/CompanyPage/${editedRocket.companyName}`)
   }
 
   // create the list for the rocket stat dropdowns
