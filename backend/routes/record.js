@@ -59,7 +59,7 @@ recordRoutes.route("/rocket/add").post(function (req, response, next) {
   }
 
   // Error out if the company is not recognized
-  if (!["SpaceX", "BlueOrigin", "NASA"].includes(rocketObj.companyName)) {
+  if (!["SpaceX", "Blue Origin", "NASA"].includes(rocketObj.companyName)) {
     return next(
       new HttpError(`Invalid company name ${rocketObj.companyName}`, 404)
     )
