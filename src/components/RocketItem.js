@@ -62,7 +62,7 @@ const [modalState, setModalState] = useState(false)
     }  
 
   const editRocketHandler = () => {
-    navigate(`/rocket/EditRocket/${rocketId}`)
+    navigate(`/rocket/EditRocket/${companyName}/${rocketId}`)
   }
 
   return (

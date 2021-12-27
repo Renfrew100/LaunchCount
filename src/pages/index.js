@@ -16,7 +16,7 @@ const Index = () => {
       <BlueOrigin path="/CompanyPage/Blue Origin"/>
       <Nasa path="/CompanyPage/Nasa"/>
       <AddRocket path="/rocket/AddRocket"/>
-      <EditRocket path="/rocket/EditRocket/:rocketId"/>
+      <EditRocket path="/rocket/EditRocket/:companyName/:rocketId"/>
     </Router>
   )
 }

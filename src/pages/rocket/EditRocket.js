@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { matchPath } from "react-router-dom"
 import { navigate } from "@reach/router"
 
 import ControlGroup from "../../components/Form/ControlGroup"
@@ -17,49 +18,72 @@ const EditRocket = props => {
   const { isLoading, sendRequest } = useHttpClient()
   let [loadedRocket, setLoadedRocket] = useState({})
 
-  let one =
-    "http://localhost:5000/rockets/SpaceX/${props.params["*"]}";
-  let two =
-    "http://localhost:5000/rockets/Blue Origin/${props.params["*"]}";
-  let three =
-    "http://localhost:5000/rockets/Nasa/${props.params["*"]}";
-  
-    const requestOne = axios.get(one);
-    const requestTwo = axios.get(two);
-    const requestThree = axios.get(three);
-    
-    axios
-      .all([requestOne, requestTwo, requestThree])
-      .then(
-        axios.spread((...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
-          const responesThree = responses[2];
-    
-          // use/access the results
-          console.log(responseOne, responseTwo, responesThree);
-        })
-      )
-      .catch(errors => {
-        // react on errors.
-        console.error(errors);
-      });
+  const match = matchPath(
+    `/CompanyPage/EditRocket/:companyName/:rocketId`,
+    `/CompanyPage/EditRocket/${props.params["*"]}`
+  )
+
+  let companyName = match.params.companyName
+  let rocketId = match.params.rocketId
+  /* 
+  The match variable looks like
+  {
+    "params": {
+        "companyName": "Nasa",
+        "rocketId": "61c9ddf106309ae93cf39d40"
+    },
+    "pathname": "/CompanyPage/EditRocket/Nasa/61c9ddf106309ae93cf39d40",
+    "pathnameBase": "/CompanyPage/EditRocket/Nasa/61c9ddf106309ae93cf39d40",
+    "pattern": {
+        "path": "/CompanyPage/EditRocket/:companyName/:rocketId",
+        "caseSensitive": false,
+        "end": true
+    }
+  }
+  */
+
+  // let one =
+  //   "http://localhost:5000/rockets/SpaceX/${props.params["*"]}";
+  // let two =
+  //   "http://localhost:5000/rockets/Blue Origin/${props.params["*"]}";
+  // let three =
+  //   "http://localhost:5000/rockets/Nasa/${props.params["*"]}";
+
+  //   const requestOne = axios.get(one);
+  //   const requestTwo = axios.get(two);
+  //   const requestThree = axios.get(three);
+
+  // axios
+  //   .all([requestOne, requestTwo, requestThree])
+  //   .then(
+  //     axios.spread((...responses) => {
+  //       const responseOne = responses[0];
+  //       const responseTwo = responses[1];
+  //       const responesThree = responses[2];
+
+  //       // use/access the results
+  //       console.log(responseOne, responseTwo, responesThree);
+  //     })
+  //   )
+  //   .catch(errors => {
+  //     // react on errors.
+  //     console.error(errors);
+  //   });
 
   useEffect(() => {
     const getRocket = async () => {
       try {
         const rocketData = await sendRequest(
-          `http://localhost:5000/rockets/SpaceX/${props.params["*"]}`
+          `http://localhost:5000/rockets/${companyName}/${rocketId}`
           //`http://localhost:5000/rockets/Blue Origin/${props.params["*"]}`
           //`http://localhost:5000/rockets/NASA/${props.params["*"]}`
-
         )
         setLoadedRocket(rocketData)
       } catch (err) {}
     }
 
     getRocket()
-  }, [sendRequest, setLoadedRocket]) 
+  }, [sendRequest, setLoadedRocket])
 
   let {
     rocketState,
@@ -83,7 +107,7 @@ const EditRocket = props => {
     successLaunchHandler(loadedRocket.successLaunch)
     failedLaunchHandler(loadedRocket.failedLaunch)
     postponedLaunchHandler(loadedRocket.postponedLaunch)
-  }, [loadedRocket]) 
+  }, [loadedRocket])
 
   const submitHandler = e => {
     const editedRocket = {
