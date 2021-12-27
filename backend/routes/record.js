@@ -38,11 +38,15 @@ recordRoutes.route("/rockets/:companyName").get(function (req, res) {
 })
 
 // This section will help you get a single record by id
-recordRoutes.route("/rockets/:companyName/:id").get(function (req, res) {
+recordRoutes.route("/rockets/:companyName/:rocketID").get(function (req, res) {
   let db_connect = dbo.getDb()
-  let myquery = { _id: ObjectId(req.params.id) }
-  db_connect.collection("records").findOne(myquery, function (err, result) {
-    if (err) throw err
+  let companyName = req.params.companyName
+  let rocketID = req.params.rocketID
+
+  let myquery = { _id: ObjectId(rocketID) }
+  db_connect.collection(companyName).findOne(myquery, function (err, result) {
+    if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
+    console.log(result)
     res.json(result)
   })
 })
@@ -65,29 +69,31 @@ recordRoutes.route("/rocket/add").post(function (req, response, next) {
     )
   }
 
-  db_connect.collection(rocketObj.companyName).insertOne(rocketObj, (err, res) => {
-    if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
-    response.json(res)
-  })
+  db_connect
+    .collection(rocketObj.companyName)
+    .insertOne(rocketObj, (err, res) => {
+      if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
+      response.json(res)
+    })
 })
 
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb()
-  let myquery = { _id: ObjectId(req.params.id) }
-  let newvalues = {
+  let updateQuery = { _id: ObjectId(req.params.id) }
+  let newRocketValues = {
     $set: {
-      Rocket_name: req.body.Rocket_name,
-      Company_name: req.body.Company_name,
-      Successful: req.body.Successful,
-      Failed: req.body.Failed,
-      Postphoned: req.body.Postphoned,
+      rocketName: req.body.rocketName,
+      companyName: req.body.companyName,
+      successLaunch: req.body.successLaunch,
+      failedLaunch: req.body.failedLaunch,
+      postponedLaunch: req.body.postponedLaunch,
     },
   }
   db_connect
-    .collection("records")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err
+    .collection(req.body.companyName)
+    .updateOne(updateQuery, newRocketValues, function (err, res) {
+      if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
       console.log("1 document updated")
       response.json(res)
     })
@@ -104,4 +110,4 @@ recordRoutes.route("/:id").delete((req, response) => {
   })
 })
 
-module.exports = recordRoutes 
+module.exports = recordRoutes
