@@ -1,4 +1,5 @@
 const express = require("express")
+const HttpError = require("../models/http-error")
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -47,9 +48,9 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 })
 
 // This section will help you create a new record.
-recordRoutes.route("/record/add").post(function (req, response) {
+recordRoutes.route("/record/add").post(function (req, response, next) {
   let db_connect = dbo.getDb()
-  let myobj = {
+  let rocketObj = {
     rocketName: req.body.rocketName,
     companyName: req.body.companyName,
     successLaunch: req.body.successLaunch,
@@ -57,29 +58,15 @@ recordRoutes.route("/record/add").post(function (req, response) {
     postponedLaunch: req.body.postponedLaunch,
   }
 
-   if(myobj.companyName === "SpaceX"){
-      db_connect.collection("SpaceX").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-      });
-    } 
+  // Error out if the company is not recognized
+  if (!["SpaceX", "Blue Origin", "NASA"].includes(rocketObj.companyName)) {
+    return next(
+      new HttpError(`Invalid company name ${rocketObj.companyName}`, 404)
+    )
+  }
 
-  if(myobj.companyName === "Blue Origin"){
-      db_connect.collection("BlueOrigin").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-      });
-    }
-
-  if(myobj.companyName === "NASA"){
-      db_connect.collection("NASA").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-      });
-  }  
-
-  db_connect.collection("records").insertOne(myobj, function (err, res) {
-    if (err) throw err
+  db_connect.collection(rocketObj.companyName).insertOne(rocketObj, (err, res) => {
+    if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
     response.json(res)
   })
 })
