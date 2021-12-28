@@ -10,7 +10,7 @@ const SpaceX = () => {
   useEffect(() => {
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("http://localhost:5000/rockets/SpaceX")
+        const rockets = await sendRequest("https://launch-code.herokuapp.com/rockets/SpaceX")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
