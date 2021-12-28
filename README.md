@@ -6,8 +6,6 @@ SpaceX, NASA, Blue Origin
 - Number of Failures
 - Number of Postphoned Launches
 
-[LaunchCount](https://rocket-launch-counter.herokuapp.com/)
-
 MERN Application
 ----------------
 MongoDB nodemon server.js
