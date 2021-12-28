@@ -3,7 +3,7 @@ import { matchPath } from "react-router-dom"
 import { navigate } from "@reach/router"
 
 import ControlGroup from "../../components/Form/ControlGroup"
-import DropdownGroup from "../../components/Form/DropDownGroup"
+import DropdownGroup from "../components/Form/DropDownGroup"
 import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
