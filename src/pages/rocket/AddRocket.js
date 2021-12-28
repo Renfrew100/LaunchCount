@@ -2,7 +2,7 @@ import React from "react"
 import {navigate} from "@reach/router"
 
 import ControlGroup from "../../components/Form/ControlGroup"
-import DropdownGroup from "../../components/Form/DropDownGroup"
+import DropdownGroup from "../../components/Form/DropdownGroup"
 import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
