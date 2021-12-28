@@ -10,7 +10,10 @@ import "../styles/mainPage.css"
 const ORIGINZATIONS = ["SpaceX", "Blue Origin", "Nasa"]
 
 const companyClickHandler = company => {
+<<<<<<< HEAD
   company = company.replace(" ", "")
+=======
+>>>>>>> main
   navigate(`/CompanyPage/${company}`)
 }
 
