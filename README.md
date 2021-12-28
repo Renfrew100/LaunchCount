@@ -13,8 +13,6 @@ Express
 REACT - GatsbyJS
 Node
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5b1835d-55eb-4f40-ab89-da1b6284fcd3/deploy-status)](https://app.netlify.com/sites/goofy-panini-ef8491/deploys)
-
 #### _**IMPORTANT NOTE**_ - 
 This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
 - local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
