@@ -15,9 +15,6 @@ Node
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5b1835d-55eb-4f40-ab89-da1b6284fcd3/deploy-status)](https://app.netlify.com/sites/goofy-panini-ef8491/deploys)
 
-##_**DISCLAIMER**_
-This project has moved maintainers and is no longer developed here. The up to date template can be found [here](https://github.com/rennemannd/MERN-Template).
-
 #### _**IMPORTANT NOTE**_ - 
 This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
 - local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
