@@ -1,8 +1,5 @@
 import React from "react"
-<<<<<<< HEAD
-=======
 import {navigate} from "@reach/router"
->>>>>>> main
 
 import ControlGroup from "../../components/Form/ControlGroup"
 import DropdownGroup from "../../components/Form/DropDownGroup"
@@ -10,12 +7,7 @@ import CustomForm from "../../components/Form/CustomForm"
 import FormGroup from "../../components/Form/FormGroup"
 
 import { useRocketReducer } from "../../components/Reducer/RocketReducer"
-<<<<<<< HEAD
-
-import axios from 'axios';
-=======
 import { useHttpClient } from "../../hooks/http-hook"
->>>>>>> main
 
 const AddRocket = () => {
   const {
@@ -33,15 +25,9 @@ const AddRocket = () => {
     postponedLaunch: 0,
   })
 
-<<<<<<< HEAD
-  console.log(rocketState)
-
-  const COMPANIES = ["SpaceX", "Blue Origin", "NASA"]
-=======
   const { isLoading, sendRequest } = useHttpClient()
 
   const COMPANIES = ["SpaceX", "Blue Origin", "Nasa"]
->>>>>>> main
 
   // create the list for the rocket stat dropdowns
   let ROCKET_STAT_NUMBERS = []
@@ -50,33 +36,6 @@ const AddRocket = () => {
   }
 
   const submitHandler = e => {
-<<<<<<< HEAD
-    e.preventDefault()
-
-      // When post request is sent to the create url, axios will add a new record(newperson) to the database.
-      const newrocket = {
-        rocketName: this.state.rocketName,
-        companyName: this.state.companyName,
-        successLaunch: this.state.successLaunch,
-        failedLaunch: this.state.failedLaunch,
-        postponedLaunch: this.body.postponedLaunch
-      };
-   
-      axios
-        .post("http://localhost:5000/record/add", newrocket)
-        .then((res) => console.log(res.data));
-   
-      // We will empty the state after posting the data to the database
-      this.setState({
-        rocketName: this.state.rocketName,
-        companyName: this.state.companyName,
-        successLaunch: this.state.successLaunch,
-        failedLaunch: this.state.failedLaunch,
-        postponedLaunch: this.body.postponedLaunch
-      });
-
-    console.log("Adding rocket")
-=======
     // When post request is sent to the create url, axios will add a new record(newperson) to the database.
 
     const newrocket = {
@@ -90,7 +49,6 @@ const AddRocket = () => {
     
     sendRequest("http://localhost:5000/rocket/add", "POST", newrocket)
     navigate(`/CompanyPage/${newrocket.companyName}`)
->>>>>>> main
   }
 
   return (

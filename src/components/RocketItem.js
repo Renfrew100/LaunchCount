@@ -1,10 +1,4 @@
 import React, { useState, Fragment } from "react"
-<<<<<<< HEAD
-import ChartContainer from "./PieChart"
-import { navigate } from "gatsby"
-import CustomModal from "./CustomModal"
-
-=======
 import {globalHistory} from "@reach/router"
 // import { useEffect } from "react"
 
@@ -17,21 +11,15 @@ import CustomModal from "./CustomModal"
 
 //import { useHttpClient } from "../../hooks/http-hook"
 
->>>>>>> main
 import Button from "./Button"
 
 import "../styles/button.css"
 
-<<<<<<< HEAD
-const RocketItem = ({ rocketName, launchData, rocketId }) => {
-  const [modalState, setModalState] = useState(false)
-=======
 const RocketItem = ({ rocketName, launchData, rocketId, companyName }) => {
 const [modalState, setModalState] = useState(false)
 
  // const { isLoading, sendRequest } = useHttpClient()
 //  let [loadedRocket, setLoadedRocket] = useState({})
->>>>>>> main
 
   const showModal = () => {
     setModalState(true)
@@ -41,10 +29,6 @@ const [modalState, setModalState] = useState(false)
     setModalState(false)
   }
 
-<<<<<<< HEAD
-  const editRocketHandler = () => {
-    navigate(`/rocket/EditRocket/${rocketId}`)
-=======
   // let {
   //   rocketState,
   // } = useRocketReducer({
@@ -79,7 +63,6 @@ const [modalState, setModalState] = useState(false)
 
   const editRocketHandler = () => {
     navigate(`/rocket/EditRocket/${companyName}/${rocketId}`)
->>>>>>> main
   }
 
   return (
@@ -103,10 +86,7 @@ const [modalState, setModalState] = useState(false)
         modalState={modalState}
         hideHandler={hideModal}
         rocketName={rocketName}
-<<<<<<< HEAD
-=======
         buttonHandler={deleteHandler}
->>>>>>> main
       />
     </Fragment>
   )

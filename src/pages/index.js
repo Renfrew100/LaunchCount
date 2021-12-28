@@ -13,17 +13,10 @@ const Index = () => {
     <Router>
       <MainPage path="/" />
       <SpaceX path="/CompanyPage/SpaceX"/>
-<<<<<<< HEAD
-      <BlueOrigin path="/CompanyPage/BlueOrigin"/>
-      <Nasa path="/CompanyPage/Nasa"/>
-      <AddRocket path="/rocket/AddRocket"/>
-      <EditRocket path="/rocket/EditRocket/:rocketId"/>
-=======
       <BlueOrigin path="/CompanyPage/Blue Origin"/>
       <Nasa path="/CompanyPage/Nasa"/>
       <AddRocket path="/rocket/AddRocket"/>
       <EditRocket path="/rocket/EditRocket/:companyName/:rocketId"/>
->>>>>>> main
     </Router>
   )
 }
