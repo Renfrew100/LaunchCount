@@ -2,9 +2,11 @@
 
 SpaceX, NASA, Blue Origin
 
-Number of Successful Launches
-Number of Failures
-Number of Postphoned Launches
+- Number of Successful Launches
+- Number of Failures
+- Number of Postphoned Launches
+
+[LaunchCount](https://rocket-launch-counter.herokuapp.com/)
 
 MERN Application
 ----------------
@@ -12,8 +14,6 @@ MongoDB nodemon server.js
 Express
 REACT - GatsbyJS
 Node
-
-[LaunchCount](https://rocket-launch-counter.herokuapp.com/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5b1835d-55eb-4f40-ab89-da1b6284fcd3/deploy-status)](https://app.netlify.com/sites/goofy-panini-ef8491/deploys)
 
