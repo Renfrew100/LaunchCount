@@ -12,19 +12,7 @@ const dbo = require("../db/conn")
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId
 
-// This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("employees")
-  db_connect
-    .collection("records")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err
-      res.json(result)
-    })
-})
-
-// This section will help you get a list of all the records.
+// This section will help you get a list of all the rockets owned by a company.
 recordRoutes.route("/rockets/:companyName").get(function (req, res) {
   const companyName = req.params.companyName
   let db_connect = dbo.getDb("RocketLaunches")
@@ -32,12 +20,12 @@ recordRoutes.route("/rockets/:companyName").get(function (req, res) {
     .collection(companyName)
     .find({})
     .toArray(function (err, result) {
-      if (err) throw err
+      if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
       res.json(result)
     })
 })
 
-// This section will help you get a single record by id
+// Get a single rocket for a company
 recordRoutes.route("/rockets/:companyName/:rocketID").get(function (req, res) {
   let db_connect = dbo.getDb()
   let companyName = req.params.companyName
@@ -51,7 +39,7 @@ recordRoutes.route("/rockets/:companyName/:rocketID").get(function (req, res) {
   })
 })
 
-// This section will help you create a new record.
+// This section will help you create a new rocket
 recordRoutes.route("/rocket/add").post(function (req, response, next) {
   let db_connect = dbo.getDb()
   let rocketObj = {
@@ -73,11 +61,11 @@ recordRoutes.route("/rocket/add").post(function (req, response, next) {
     .collection(rocketObj.companyName)
     .insertOne(rocketObj, (err, res) => {
       if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
-      response.json(res)
+      response.status(200).json({ message: "Added document with data " +  rocketObj})
     })
 })
 
-// This section will help you update a record by id.
+// This section will help you update a rocket by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb()
   let updateQuery = { _id: ObjectId(req.params.id) }
@@ -95,23 +83,24 @@ recordRoutes.route("/update/:id").post(function (req, response) {
     .updateOne(updateQuery, newRocketValues, function (err, res) {
       if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
       console.log("1 document updated")
-      response.json(res)
+      response.status(200).json({ message: "Updated document with data " +  newRocketValues.$set})
     })
 })
 
-// This section will help you delete a record
+// This section will help you delete a rocket for a company
 recordRoutes.route("/:companyName/:id").delete((req, response) => {
-  let companyName = req.params.companyName;
-  let id = req.params.id;
-
+  let companyName = req.params.companyName
+  let id = req.params.id
 
   let db_connect = dbo.getDb()
   let deleteQuery = { _id: ObjectId(req.params.id) }
-  db_connect.collection(companyName).deleteOne(deleteQuery, function (err, obj) {
-    if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
-    console.log("1 document deleted")
-    response.status(200).json({message: "Deleted document with id " + id})
-  })
+  db_connect
+    .collection(companyName)
+    .deleteOne(deleteQuery, function (err, obj) {
+      if (err) return next(new HttpError(`MongoDB error ${err}`, 500))
+      console.log("1 document deleted")
+      response.status(200).json({ message: "Deleted document with id " + id })
+    })
 })
 
 module.exports = recordRoutes
