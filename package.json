@@ -46,7 +46,7 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.2.1",
     "react-uuid": "^1.0.2",
-    "sass": "^1.45.1",
+    "sass": "^1.53.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75"
   },
