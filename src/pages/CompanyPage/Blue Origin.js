@@ -10,7 +10,7 @@ const BlueOrigin = () => {
   useEffect(() => {
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("https://launch-code.herokuapp.com/rockets/Blue Origin")
+        const rockets = await sendRequest("https://launch-count.herokuapp.com/rockets/Blue Origin")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
