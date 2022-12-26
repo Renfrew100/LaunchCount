@@ -10,7 +10,7 @@ const Nasa = () => {
     
     const getRockets = async () => {
       try {
-        const rockets = await sendRequest("https://launch-count.herokuapp.com/rockets/Nasa")
+        const rockets = await sendRequest("https://launch-code.herokuapp.com/rockets/Nasa")
         setRocketDatabaseData(rockets)
       } catch (err) {}
     }
