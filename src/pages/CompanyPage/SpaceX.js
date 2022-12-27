@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from "react"
 import CompanyPageFactory from "./CompanyPageFactory"
 import { useHttpClient } from "../../hooks/http-hook"
+import Pie from "../../components/PieChart"
 
 const SpaceX = () => {
   let [rocketDatabaseData, setRocketDatabaseData] = useState([])
   const [rocketGraphData, setRocketGraphData] = useState([])
   const { isLoading, sendRequest } = useHttpClient()
-
-  useEffect(() => {
-    const getRockets = async () => {
-      try {
-        const rockets = await sendRequest("https://launch-code.herokuapp.com/rockets/SpaceX")
-        setRocketDatabaseData(rockets)
-      } catch (err) {}
-    }
-
-    getRockets()
-  }, [sendRequest, setRocketDatabaseData])
 
   useEffect(() => {
     // mapping the data from the database into a format that the KendoReact Graph API understands
@@ -58,6 +48,7 @@ const SpaceX = () => {
 
   return (
     <React.Fragment>
+      <Pie />
       {isLoading && (
         <div>
           <h3>Loading data</h3>

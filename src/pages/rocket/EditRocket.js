@@ -22,9 +22,9 @@ const EditRocket = props => {
     `/CompanyPage/EditRocket/:companyName/:rocketId`,
     `/CompanyPage/EditRocket/${props.params["*"]}`
   )
-
+/* 
   let companyName = match.params.companyName
-  let rocketId = match.params.rocketId
+  let rocketId = match.params.rocketId */
   /* 
   The match variable looks like
   {
@@ -70,7 +70,7 @@ const EditRocket = props => {
   //     console.error(errors);
   //   });
 
-  useEffect(() => {
+/*   useEffect(() => {
     const getRocket = async () => {
       try {
         const rocketData = await sendRequest(
@@ -83,7 +83,7 @@ const EditRocket = props => {
     }
 
     getRocket()
-  }, [sendRequest, setLoadedRocket])
+  }, [sendRequest, setLoadedRocket]) */
 
   let {
     rocketState,
