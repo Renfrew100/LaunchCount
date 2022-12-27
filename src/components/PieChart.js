@@ -4,6 +4,11 @@ import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const labelContent = props => {
+  let formatedNumber = Number(props.dataItem.value)
+  return `${props.dataItem.category} ${formatedNumber}`
+}
+
 export const data = {
  labels: ['Successful Launches', 'Postphone Launches', 'Failed Launches'],
  datasets: [
@@ -24,9 +29,9 @@ export const data = {
  ],
 };
 
-const PieChart = () => {
+const PieChart = ( ) => {
  return (
-    <div style={{ height: '800px', width: '800px' }}>
+    <div style={{ height: '800px', width: '1050px' }}>
       <Pie data={data} />
     </div>
  );

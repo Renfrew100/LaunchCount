@@ -8,7 +8,7 @@ const Nasa = () => {
   const [rocketGraphData, setRocketGraphData] = useState([])
   const { isLoading, sendRequest } = useHttpClient()
   
- /*  useEffect(() => {
+/*    useEffect(() => {
     
     const getRockets = async () => {
       try {
@@ -18,7 +18,7 @@ const Nasa = () => {
     }
 
     getRockets()
-  }, [sendRequest, setRocketDatabaseData]) */
+  }, [sendRequest, setRocketDatabaseData])  */
   
   useEffect(() => {
     // mapping the data from the database into a format that the KendoReact Graph API understands
