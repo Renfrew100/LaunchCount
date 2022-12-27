@@ -13,6 +13,18 @@ Express
 REACT - GatsbyJS
 Node
 
+![image](https://user-images.githubusercontent.com/37605427/209727772-d53084cd-91f8-43d7-92eb-cd6472e1ce1f.png)
+
+![image](https://user-images.githubusercontent.com/37605427/209727777-37754b6b-9e38-4493-a96c-7cfd35a3d17b.png)
+![image](https://user-images.githubusercontent.com/37605427/209727784-f449fc90-304f-4471-8ba9-fadb009825d8.png)
+
+![image](https://user-images.githubusercontent.com/37605427/209727799-7f3786dd-b063-4d23-84ee-288242bf45c9.png)
+![image](https://user-images.githubusercontent.com/37605427/209727809-6c6a62bc-62ce-48e0-88fe-cd6e1260192c.png)
+
+![image](https://user-images.githubusercontent.com/37605427/209727815-3c8c3c2c-52c2-494c-9d96-1830fe7f1dd5.png)
+![image](https://user-images.githubusercontent.com/37605427/209727822-48d100dd-0a7d-4c58-866a-877731579e10.png)
+
+
 #### _**IMPORTANT NOTE**_ - 
 This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
 - local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
