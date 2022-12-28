@@ -24,6 +24,8 @@ Node
 ![image](https://user-images.githubusercontent.com/37605427/209727815-3c8c3c2c-52c2-494c-9d96-1830fe7f1dd5.png)
 ![image](https://user-images.githubusercontent.com/37605427/209727907-77b65a76-763a-43d0-a0bc-6b309ce01835.png)
 
+![image](https://user-images.githubusercontent.com/37605427/209867099-2fd72c34-dadf-44e0-8896-60de4315f165.png)
+![image](https://user-images.githubusercontent.com/37605427/209867113-502fb1bc-c631-4c0d-bf3f-087d7616592a.png)
 
 #### _**IMPORTANT NOTE**_ - 
 This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
