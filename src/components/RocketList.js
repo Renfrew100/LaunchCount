@@ -9,9 +9,6 @@ import "../styles/company.css"
 const RocketList = ({rockets}) => {
   return (
     <div className="row">
-      {rockets.map(rocket => (
-        <RocketItem key={uuid()} companyName={rocket.companyName} rocketName={rocket.name} launchData={rocket.launches} rocketId={rocket.id} />
-      ))}
     </div>
   )
 }
