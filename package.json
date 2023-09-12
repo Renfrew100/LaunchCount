@@ -3,7 +3,7 @@
   "private": true,
   "description": "A starter for a blog powered by Gatsby and Markdown",
   "version": "0.1.0",
-  "engine": {
+  "engines": {
     "node": "18.17.0",
     "npm": "10.0.0"
   },
